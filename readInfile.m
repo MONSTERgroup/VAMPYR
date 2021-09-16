@@ -5,7 +5,8 @@ fname_in = [pname filesep 'vpsc7.in'];
 
 infile = fopen(fname_in);
 
-% get header information
+
+%% get header information
 tline = fgetl(infile);
 nElement = sscanf(tline, '%f %*s', 1);
 tline = fgetl(infile);
@@ -14,6 +15,7 @@ tline = fgetl(infile);
 phaseFrac = sscanf(tline,varLengthStrFormat(nPhase));
 
 
+%% Phase info
 %Initialize the phase-specific variables
 gShapeControl = repmat(0,[nPhase 1]);
 fragmentation = repmat(0,[nPhase 1]);
@@ -45,6 +47,59 @@ for i = 1:nPhase %get all the parameters for each phase
     
 end
 
-    tline = fgetl(infile); %L14 (assuming single phase)
-    tline = fgetl(infile); %L15
-    
+
+%% Convergence parameters
+tline = fgetl(infile); %L14 (assuming single phase)
+tline = fgetl(infile); %L15
+[errStress errStrRateD errModuli errSecondOrder] = sscanf(tline, '%f %f %f %f %*s', 4);
+
+tline = fgetl(infile); %L16
+[itMaxTot itMaxExternal itMaxInternalSO] = sscanf(tline, '%f %f %f %*s', 3);
+
+tline = fgetl(infile); %L17
+
+
+tline = fgetl(infile); %L18
+
+
+%% i/o settings
+tline = fgetl(infile); %L19
+tline = fgetl(infile); %L20
+iRecover = sscanf(tline, '%f %*s', 1);
+
+tline = fgetl(infile); %L21
+iSave = sscanf(tline, '%f %*s', 1);
+
+tline = fgetl(infile); %L22
+iCubeComp = sscanf(tline, '%f %*s', 1);
+
+tline = fgetl(infile); %L23
+nWrite = sscanf(tline, '%f %*s', 1);
+
+
+%% modeling conditions
+tline = fgetl(infile); %L24
+tline = fgetl(infile); %L25
+interactionType = sscanf(tline, '%f %*s', 1);
+
+
+tline = fgetl(infile); %L26
+[iUpdateOri iUpdateMorph iUpdateHardening] = sscanf(tline, '%f %f %f %*s', 3);
+
+tline = fgetl(infile); %L27
+nNeighbor = sscanf(tline, '%f %*s', 1);
+
+tline = fgetl(infile); %L28
+iFluctuation = sscanf(tline, '%f %*s', 1);
+
+
+
+%% deformation processes
+tline = fgetl(infile); %L29
+tline = fgetl(infile); %L30
+
+
+
+
+
+
