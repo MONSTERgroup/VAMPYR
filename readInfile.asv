@@ -12,7 +12,7 @@ nElement = sscanf(tline, '%f %*s', 1);
 tline = fgetl(infile);
 nPhase = sscanf(tline, '%f %*s', 1);
 tline = fgetl(infile);
-phaseFrac = sscanf(tline,varLengthStrFormat(nPhase));
+phaseFrac = sscanf(tline,varLengthStrFormat(nPhase))';
 
 
 %% Phase info
@@ -30,11 +30,14 @@ for i = 1:nPhase %get all the parameters for each phase
     
     tline = fgetl(infile); %L4
     tline = fgetl(infile); %L5
-    [gShapeControl(i) fragmentation(i) critAspectRatio(i)] = sscanf(tline, '%f %f %f %*s', 3);
+    temp = sscanf(tline, '%f %f %f %*s', 3);
+        gShapeControl(i) = temp(1);
+        fragmentation(i) = temp(2);
+        critAspectRatio(i) = temp(3);
     tline = fgetl(infile); %L6
-    ellipsoidAspect(i,:) = sscanf(tline, '%f %f %f %*s', 3);
+    ellipsoidAspect(i,:) = sscanf(tline, '%f %f %f %*s', 3)';
     tline = fgetl(infile); %L7
-    ellipsoidAxesAngles(i,:) = sscanf(tline, '%f %f %f %*s', 3);
+    ellipsoidAxesAngles(i,:) = sscanf(tline, '%f %f %f %*s', 3)';
     tline = fgetl(infile); %L8
     tline = fgetl(infile); %L9
     fnameTEX(i) = tline;
@@ -46,50 +49,79 @@ for i = 1:nPhase %get all the parameters for each phase
     fnameMORPH(i) = tline;
     
 end
-
+clear i temp
 
 %% Convergence parameters
 tline = fgetl(infile); %L14 (assuming single phase)
 tline = fgetl(infile); %L15
-[errStress errStrRateD errModuli errSecondOrder] = sscanf(tline, '%f %f %f %f %*s', 4);
+temp = sscanf(tline, '%f %f %f %f %*s', 4);
+    errStress = temp(1);
+    errStrRateD = temp(2);
+    errModuli = temp(3); 
+    errSecondOrder = temp(4);
 
 tline = fgetl(infile); %L16
-[itMaxTot itMaxExternal itMaxInternalSO] = sscanf(tline, '%f %f %f %*s', 3);
-
+temp = sscanf(tline, '%f %f %f %*s', 3);
+itMaxTot = temp(1);
+itMaxExternal = temp(2);
+itMaxInternalSO = temp(3);
+ 
 tline = fgetl(infile); %L17
+[irsvar, jrsini, jrsfin, jrstep] = sscanf(tline, '%f %f %f %f %*s', 3);
 
 
 tline = fgetl(infile); %L18
-
+iBCinv = sscanf(tline, '%f %*s', 1);
 
 %% i/o settings
 tline = fgetl(infile); %L19
 tline = fgetl(infile); %L20
+iRecover = sscanf(tline, '%f %*s', 1);
 
 tline = fgetl(infile); %L21
+iSave = sscanf(tline, '%f %*s', 1);
 
 tline = fgetl(infile); %L22
+iCubeComp = sscanf(tline, '%f %*s', 1);
 
 tline = fgetl(infile); %L23
+nWrite = sscanf(tline, '%f %*s', 1);
 
 
 %% modeling conditions
 tline = fgetl(infile); %L24
 tline = fgetl(infile); %L25
+interactionType = sscanf(tline, '%f %*s', 1);
+
 
 tline = fgetl(infile); %L26
+[iUpdateOri, iUpdateMorph, iUpdateHardening] = sscanf(tline, '%f %f %f %*s', 3);
 
 tline = fgetl(infile); %L27
+nNeighbor = sscanf(tline, '%f %*s', 1);
 
 tline = fgetl(infile); %L28
+iFluctuation = sscanf(tline, '%f %*s', 1);
+
 
 
 %% deformation processes
 tline = fgetl(infile); %L29
 tline = fgetl(infile); %L30
+nProcess = sscanf(tline, '%f %*s', 1);
 
+processType = zeros([nProcess 1]);
+processDetail = cell(nProcess, 1);
+tline = fgetl(infile); %L31
 
+for i = 1:nProcess
+    tline = fgetl(infile); %L32
+    processType(i) = sscanf(tline, '%f %*s', 1);
+    tline = fgetl(infile); %L33
+    processDetail(i) = tline;
+end
 
+fclose(infile)
 
 
 
