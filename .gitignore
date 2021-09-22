@@ -1,2 +1,4 @@
 
-readInfile.asv
+# Autosaves
+*.asv
+
