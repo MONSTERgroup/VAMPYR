@@ -12,7 +12,7 @@ nElement = sscanf(tline, '%f %*s', 1);
 tline = fgetl(infile);
 nPhase = sscanf(tline, '%f %*s', 1);
 tline = fgetl(infile);
-phaseFrac = sscanf(tline,varLengthStrFormat(nPhase))';
+phaseFrac = sscanf(tline,varLengthStrFormat(nPhase),nPhase);
 
 
 %% Phase info
