@@ -40,13 +40,13 @@ for i = 1:nPhase %get all the parameters for each phase
     ellipsoidAxesAngles(i,:) = sscanf(tline, '%f %f %f %*s', 3)';
     tline = fgetl(infile); %L8
     tline = fgetl(infile); %L9
-    fnameTEX(i) = tline;
+    fnameTEX{i} = tline;
     tline = fgetl(infile); %L10
     tline = fgetl(infile); %L11
-    fnameSX(i) = tline;
+    fnameSX{i} = tline;
     tline = fgetl(infile); %L12
     tline = fgetl(infile); %L13
-    fnameMORPH(i) = tline;
+    fnameMORPH{i} = tline;
     
 end
 clear i temp
@@ -67,7 +67,7 @@ temp = sscanf(tline, '%f %f %f %*s', 3);
     itMaxInternalSO = temp(3);
  
 tline = fgetl(infile); %L17
-temp = sscanf(tline, '%f %f %f %f %*s', 3);
+temp = sscanf(tline, '%f %f %f %f %*s', 4);
     irsvar = temp(1);
     jrsini = temp(2);
     jrsfin = temp(3);
@@ -125,7 +125,7 @@ for i = 1:nProcess
     tline = fgetl(infile); %L32
     processType(i) = sscanf(tline, '%f %*s', 1);
     tline = fgetl(infile); %L33
-    processDetail(i) = tline;
+    processDetail{i} = tline;
 end
 
 fclose(infile)

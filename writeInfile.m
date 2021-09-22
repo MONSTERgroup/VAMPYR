@@ -7,6 +7,7 @@ fname_in = [pname filesep 'vpsc7.in'];
 infile = fopen(fname_in,'w');
 fprintf(infile,'%u                          number of elements (nelem)',nElement);%L1
 fprintf(infile,'%u                          number of phases (nph)',nPhase); %L2
+formatSpec = 
 fprintf(infile,'',); %L3
 %L4
 
