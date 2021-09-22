@@ -27,7 +27,7 @@ shape1.100
 0              nneigh (0 for no neighbors, 1 for pairs, etc.)
 0              iflu (0: don't calc, 1: calc fluctuations)
 *NUMBER OF PROCESSES (Lij const; Lij variable; PCYS ;LANKFORD; rigid rotatn)
-5
+1
 *IVGVAR AND PATH\NAME OF FILE FOR EACH PROCESS (dummy if ivgvar=2,3)
 0                  -->   15% through-thickness compression
 TTC15.3
