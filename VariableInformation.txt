@@ -5,6 +5,7 @@ vpsc7.in
 
 nElement 		1x1 		uint	1		number of elements, == 1 for VPSC
 nPhase			1x1 		uint	1		number of phases
+phaseFrac		nPhase x 1	double			phase fractions
 gShapeControl	nPhase x 1	uint	0		grain shape control. 0,1,2,3,4 3 and 4 require MORPH file
 iFragment		nPhase x 1	uint	0		0 = max aspect ratio enforced, 1 = grain fragmention invoked
 critAspect		nPhase x 1 		uint	25		Critical aspect ratio for iFrag
@@ -14,7 +15,7 @@ fnameTEX		nPhase x 1	str				TEX file names
 fnameSX			nPhase x 1	str				SX file names
 fnameMORPH		nPhase x 1	str				MORPH file names
 errStress		1x1			double	0.001   Convergence parameter, relative tolerance
-errStrRateD		1x1			double	0.001   Convergence parameter, relative tolerance
+errStrainRateD	1x1			double	0.001   Convergence parameter, relative tolerance
 errModuli		1x1			double	0.001   Convergence parameter, relative tolerance
 errSecondOrder	1x1			double	0.001   Convergence parameter, relative tolerance
 itMaxTot		1x1			uint	100		Total max iterations
@@ -27,7 +28,7 @@ jrstep			1x1			uint	2		Controls external convergence loop, dummy if irsvar = 0
 iBCinv			1x1			uint	1		Convergence parameter, equation 5-40 (0) vs 5-41 (1) in manual
 iRecover		1x1			uint	0		Uses Taylor stresses as initial guess for first step (0) or reads states from POSTMORT.IN (1)
 iSave			1x1			uint	0		No POSTMORT.IN (0) or POSTMORT.IN at step n (n)
-iCubCom			1x1			uint	0		Calculates volume fractions associated with cubic components. Needs CUBCOMP.IN
+iCubeComp		1x1			uint	0		Calculates volume fractions associated with cubic components. Needs CUBCOMP.IN
 nWrite			1x1			uint	0		Write tex to file at end(0) or every n steps (n)
 iHardLaw		1x1			uint	3		interaction (0:FC,1:affine,2:secant,3:neff=10,4:tangent,5:SO)
 updateOri		1x1			uint	1		Updates ori through simulation (1), does not update (0)
