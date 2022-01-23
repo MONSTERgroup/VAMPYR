@@ -14,7 +14,8 @@ fprintf(infile,'%s', [num2str(phaseFrac, '%.2f') '                   relative vo
 for i = 1:nPhase
     
     fprintf(infile,'%s', ['*INFORMATION ABOUT PHASE #' num2str(i) '\n']);%L4
-    fprintf(infile,'%.1f %.1f '); %L5 
+    fprintf(infile,'%.1f %.1f ',); %L5 
 
 
 end
+
