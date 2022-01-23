@@ -5,9 +5,9 @@ vpsc7.in
 
 nElement 		1x1 		uint	1		number of elements, == 1 for VPSC
 nPhase			1x1 		uint	1		number of phases
-gShapeControl	1x1 		uint	0		grain shape control. 0,1,2,3,4 3 and 4 require MORPH file
-iFragment		1x1 		uint	0		0 = max aspect ratio enforced, 1 = grain fragmention invoked
-critAspect		1x1 		uint	25		Critical aspect ratio for iFrag
+gShapeControl	nPhase x 1	uint	0		grain shape control. 0,1,2,3,4 3 and 4 require MORPH file
+iFragment		nPhase x 1	uint	0		0 = max aspect ratio enforced, 1 = grain fragmention invoked
+critAspect		nPhase x 1 		uint	25		Critical aspect ratio for iFrag
 axesRatio		nPhase x 3 	double	1,1,1	Initial aspect ratio, dummy for iShape 3,4
 axesEuler		nPhase x 3 	double	0,0,0	Initial axes euler angles 
 fnameTEX		nPhase x 1	str				TEX file names
@@ -36,7 +36,7 @@ updateHard		1x1			uint	1		Updates hardening through simulation (1), does not upd
 nNeigh			1x1			uint	0		number of neighbors for each grain
 iFluct			1x1			uint	0		0: don't calc, 1: calc fluctuations
 nProcess		1x1			uint	1		number of deformation processes
-defProcess		nProcess x2	cell	1		Col 1: IVGVAR 		Col 2: fnameDEF if needed
+defProcess		nProcess x3	cell	1		Col 1: IVGVAR 	Col 2: Comment	Col 3: fnameDEF if needed
 											* If IVGVAR=0 the code will enforce the same velocity gradient in every step. The
 												load conditions are read from a PROCESS file: path\name are declared in this line
 											* If IVGVAR=1 the code will call SUBROUTINE VAR_VEL_GRAD at each
@@ -61,5 +61,6 @@ defProcess		nProcess x2	cell	1		Col 1: IVGVAR 		Col 2: fnameDEF if needed
 												route, where after each pass the sample is rotated and reinserted in the die. The
 												second line gives the path and name of a file containing the 3x3 rotation matrix to be
 												used for the rigid rotation (see Section 2-3-3 for description).
-
+pcysSection		1x2			uint	1 2		Section of stress space for PCYS
+lankfordInc		1x1			uint	10		Angular increment for tensile probing during Lankford
 
