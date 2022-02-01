@@ -65,3 +65,24 @@ defProcess		nProcess x3	cell	1		Col 1: IVGVAR 	Col 2: Comment	Col 3: fnameDEF if
 pcysSection		1x2			uint	1 2		Section of stress space for PCYS
 lankfordInc		1x1			uint	10		Angular increment for tensile probing during Lankford
 
+
+********************************************************************************************************
+SX file
+
+matName			1x			char			Name of material
+crySym			1x			char			Crystal symmetry
+crystalAxes
+crystalAngle
+C				6x6			double			Stiffness
+alpha			6x1			double			Thermal expansion
+nModesTotal		1x1			uint			Number of modes in file
+nModesActive	1x1			uint			Number of active modes
+activeModes	 nModesActivex1 uint			Indices of active modes
+modeX		 nModesTotalx1	uint			Mode indices
+nsmX		 nModesTotalx1
+iOpSysX		 nModesTotalx1
+iTwTypeX	 nModesTotalx1
+
+
+
+

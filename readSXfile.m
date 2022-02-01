@@ -49,10 +49,10 @@ tline = fgetl(infile); %15
 tline = fgetl(infile); %16 
     activeModes = sscanf(tline,varLengthStrFormat(nModesActive),nModesActive);
 
-modex = zeros(nModesTotal,1);
-nsmx = zeros(nModesTotal,1);
-iopsysx = zeros(nModesTotal,1);
-itwtypex = zeros(nModesTotal,1);
+modeX = zeros(nModesTotal,1);
+nsmX = zeros(nModesTotal,1);
+iOpSysX = zeros(nModesTotal,1);
+iTwTypeX = zeros(nModesTotal,1);
     
 for i = 1:nModesTotal
     
@@ -60,81 +60,8 @@ for i = 1:nModesTotal
     for j = 1:
 
     
-%% Convergence parameters
-tline = fgetl(infile); %L14 (assuming single phase)
-tline = fgetl(infile); %L15
-temp = sscanf(tline, '%f %f %f %f %*s', 4);
-    errStress = temp(1);
-    errStrRateD = temp(2);
-    errModuli = temp(3); 
-    errSecondOrder = temp(4);
-
-tline = fgetl(infile); %L16
-temp = sscanf(tline, '%f %f %f %*s', 3);
-    itMaxTot = temp(1);
-    itMaxExternal = temp(2);
-    itMaxInternalSO = temp(3);
- 
-tline = fgetl(infile); %L17
-temp = sscanf(tline, '%f %f %f %f %*s', 4);
-    irsvar = temp(1);
-    jrsini = temp(2);
-    jrsfin = temp(3);
-    jrstep = temp(4);
-
-tline = fgetl(infile); %L18
-iBCinv = sscanf(tline, '%f %*s', 1);
-
-%% i/o settings
-tline = fgetl(infile); %L19
-tline = fgetl(infile); %L20
-iRecover = sscanf(tline, '%f %*s', 1);
-
-tline = fgetl(infile); %L21
-iSave = sscanf(tline, '%f %*s', 1);
-
-tline = fgetl(infile); %L22
-iCubeComp = sscanf(tline, '%f %*s', 1);
-
-tline = fgetl(infile); %L23
-nWrite = sscanf(tline, '%f %*s', 1);
-
-
-%% modeling conditions
-tline = fgetl(infile); %L24
-tline = fgetl(infile); %L25
-interactionType = sscanf(tline, '%f %*s', 1);
-
-
-tline = fgetl(infile); %L26
-temp = sscanf(tline, '%f %f %f %*s', 3);
-    iUpdateOri = temp(1);
-    iUpdateMorph = temp(2);
-    iUpdateHardening = temp(3);
-
-
-tline = fgetl(infile); %L27
-nNeighbor = sscanf(tline, '%f %*s', 1);
-
-tline = fgetl(infile); %L28
-iFluctuation = sscanf(tline, '%f %*s', 1);
-
-
-
-%% deformation processes
-tline = fgetl(infile); %L29
-tline = fgetl(infile); %L30
-nProcess = sscanf(tline, '%f %*s', 1);
-
-processType = zeros([nProcess 1]);
-processDetail = cell(nProcess, 1);
-tline = fgetl(infile); %L31
-
-for i = 1:nProcess
-    tline = fgetl(infile); %L32
-    processType(i) = sscanf(tline, '%f %*s', 1);
-    tline = fgetl(infile); %L33
-    processDetail{i} = tline;
+        
+    end
 end
 
 fclose(infile)
