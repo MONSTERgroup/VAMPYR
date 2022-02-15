@@ -96,5 +96,5 @@ latentHard	 nModesActive 	double	0		Latent hardening parameters for each mode
 			  x nModesActive
 iSecondTwin	 nModesTwinx1 	uint 	1		1: Allows or 0: disallows secondary twin reorientation
 twThresh1	 nmodesTwinx1  	double  0.05	Threshold 1 in Predominant Twin Reorientation
-twThresh2	 nModesTwinx1	double	0.50	Threshold 2 in Predominant Twin	Reorientation
+twThresh2	 nModesTwinx1	double	0.50	Threshold 2 in Predominant Twin	Reorientation 
 
