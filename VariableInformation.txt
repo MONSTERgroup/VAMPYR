@@ -83,18 +83,18 @@ nsmX		 nModesTotalx1	uint
 iOpSysX		 nModesTotalx1	uint
 iTwTypeX	 nModesTotalx1	uint
 modeLabels	 nModesTotalx1  cell			Label for each slip/twin modeLabels
-modePlaneDir nModesTotalx2  cell			Slip planes and slip directions for each mode
-											Converted to MTEX slip systems
-twinShearRaw nModesTwinx1   double			twin shear for twin modes
+modePlaneDir nModesTotalx6  int			Slip planes and slip directions for each mode
+				or nModesTotalx8				Converted to MTEX slip systems
+twinShearRaw nModesTotalx1   double			twin shear for twin modes
 constitutive    1x1   		uint	0		0: Voce, 1: MTS
 iRateSens		1x1			uint	1		0: rate insensitive, 1: rate sensitive
-grainSize		25			double	25		Only matters if HPfactor is non-zero							
+grainSize		1x1			double	25		Only matters if HPfactor is non-zero							
 nRSX		 nModesActivex1 uint	20		Mode rate sensitivity parameter
 voce		 nModesActivex4 double			tau0, tau1, theta0, theta1 (Voce hardening parameters)
 hpFactor	 nModesActivex1 double	0		Hall-Petch factor
 latentHard	 nModesActive 	double	0		Latent hardening parameters for each mode
 			  x nModesActive
-iSecondTwin	 nModesTwinx1 	uint 	1		1: Allows or 0: disallows secondary twin reorientation
-twThresh1	 nmodesTwinx1  	double  0.05	Threshold 1 in Predominant Twin Reorientation
-twThresh2	 nModesTwinx1	double	0.50	Threshold 2 in Predominant Twin	Reorientation 
+iSecondTwin	 nModesActivex1 	uint 	1		1: Allows or 0: disallows secondary twin reorientation
+twThresh1	 nmodesActivex1  	double  0.05	Threshold 1 in Predominant Twin Reorientation
+twThresh2	 nModesActivex1	double	0.50	Threshold 2 in Predominant Twin	Reorientation 
 
