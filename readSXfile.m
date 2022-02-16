@@ -1,4 +1,4 @@
-%% Code snippet to read VPSC infile. 
+%% Code snippet to read VPSC SX file. 
 
 pname = 'C:\Users\victoria.miller\Documents\GitHub\Random-VPSC-MTEX-code-snippets\Sample Files to Read';
 fname_in = [pname filesep 'zr_293K.sx'];
@@ -8,7 +8,7 @@ infile = fopen(fname_in);
 
 %% get header information
 tline = fgetl(infile); %1
-matName = sscanf(tline, 'Material: %s');
+matName = sscanf(tline, '*Material: %s');
 tline = fgetl(infile); %2
 crySym = sscanf(tline, '%s            crysym');
     if strcmpi(crySym,'HEXAGONAL')
