@@ -83,8 +83,8 @@ nsmX		 nModesTotalx1	uint
 iOpSysX		 nModesTotalx1	uint
 iTwTypeX	 nModesTotalx1	uint
 modeLabels	 nModesTotalx1  cell			Label for each slip/twin modeLabels
-modePlaneDir nModesTotalx6  int			Slip planes and slip directions for each mode
-				or nModesTotalx8				Converted to MTEX slip systems
+modePlaneDir nModesTotalx   int			    Slip planes and slip directions for each mode
+				nsmX x 6 or 8  				    Convert later to MTEX slip systems
 twinShearRaw nModesTotalx1   double			twin shear for twin modes
 constitutive    1x1   		uint	0		0: Voce, 1: MTS
 iRateSens		1x1			uint	1		0: rate insensitive, 1: rate sensitive

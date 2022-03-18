@@ -79,7 +79,7 @@ for i = 1:nModesTotal
     % loop over each distinct slip system in the family
     for j = 1:nsmX(i)
         tline = fgetl(infile);
-        modePlaneDir(i,:) = sscanf(tline,mfmt);        
+        modePlaneDir(i,j,:) = sscanf(tline,mfmt);        
     end
     
 end
