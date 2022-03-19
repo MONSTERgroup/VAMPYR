@@ -94,7 +94,35 @@ voce		 nModesActivex4 double			tau0, tau1, theta0, theta1 (Voce hardening parame
 hpFactor	 nModesActivex1 double	0		Hall-Petch factor
 latentHard	 nModesActive 	double	0		Latent hardening parameters for each mode
 			  x nModesActive
-iSecondTwin	 nModesActivex1 	uint 	1		1: Allows or 0: disallows secondary twin reorientation
-twThresh1	 nmodesActivex1  	double  0.05	Threshold 1 in Predominant Twin Reorientation
+iSecondTwin	 nModesActivex1 uint 	1		1: Allows or 0: disallows secondary twin reorientation
+twThresh1	 nmodesActivex1 double  0.05	Threshold 1 in Predominant Twin Reorientation
 twThresh2	 nModesActivex1	double	0.50	Threshold 2 in Predominant Twin	Reorientation 
+
+********************************************************************************************************
+STR file
+
+strainVM     nStepx1		double			von Mises strain
+stressVM	 nStepx1		double			von Mises stress
+strain		 nStepx3x3		double			strain
+stress		 nStepx3x3		double			Cauchy stress
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
