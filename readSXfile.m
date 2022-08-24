@@ -1,4 +1,4 @@
-%% Code snippet to read VPSC infile. 
+%% Code snippet to read VPSC SX file. 
 
 pname = 'C:\Users\victoria.miller\Documents\GitHub\Random-VPSC-MTEX-code-snippets\Sample Files to Read';
 fname_in = [pname filesep 'zr_293K.sx'];
@@ -8,10 +8,10 @@ infile = fopen(fname_in);
 
 %% get header information
 tline = fgetl(infile); %1
-matName = sscanf(tline, 'Material: %s');
+matName = sscanf(tline, '*Material: %s');
 tline = fgetl(infile); %2
 crySym = sscanf(tline, '%s            crysym');
-    if strcompi(crySym,'HEXAGONAL')
+    if strcmpi(crySym,'HEXAGONAL')
         mfmt = '%i %i %i %i %i %i %i %i';
     else 
         mfmt = '%i %i %i %i %i %i';
@@ -49,95 +49,89 @@ tline = fgetl(infile); %15
 tline = fgetl(infile); %16 
     activeModes = sscanf(tline,varLengthStrFormat(nModesActive),nModesActive);
 
-modex = zeros(nModesTotal,1);
-nsmx = zeros(nModesTotal,1);
-iopsysx = zeros(nModesTotal,1);
-itwtypex = zeros(nModesTotal,1);
+modeLabels = cell(nModesTotal,1);    
+modeX = zeros(nModesTotal,1);
+nsmX = zeros(nModesTotal,1);
+iOpSysX = zeros(nModesTotal,1);
+iTwTypeX = zeros(nModesTotal,1);
+twinShear = zeros(nModesTotal,1); % dummy value of 0 if not twin 
     
+% loop over all slip/twin systems in the file
 for i = 1:nModesTotal
     
+    % info about the mode
+    tline = fgetl(infile); %17 name of system
+        modeLabels{i,1} = sscanf(tline,'%s',1);
+        
+    tline = fgetl(infile); %18 modex,nsmx,iopsysx,itwtypex
+        temp = sscanf(tline,'%i',4);
+        modeX(i) = temp(1);
+        nsmX(i) = temp(2);
+        iOpSysX(i) = temp(3);
+        iTwTypeX(i) = temp(4);
     
-    for j = 1:
-
+    % twin systems have an exptra parameter on a separate line
+    if iTwTypeX(i) ~= 0
+        tline = fgetl(infile); 
+        twinShear(i) = sscanf(tline,'%f %*s',1);
+    end
     
-%% Convergence parameters
-tline = fgetl(infile); %L14 (assuming single phase)
-tline = fgetl(infile); %L15
-temp = sscanf(tline, '%f %f %f %f %*s', 4);
-    errStress = temp(1);
-    errStrRateD = temp(2);
-    errModuli = temp(3); 
-    errSecondOrder = temp(4);
-
-tline = fgetl(infile); %L16
-temp = sscanf(tline, '%f %f %f %*s', 3);
-    itMaxTot = temp(1);
-    itMaxExternal = temp(2);
-    itMaxInternalSO = temp(3);
- 
-tline = fgetl(infile); %L17
-temp = sscanf(tline, '%f %f %f %f %*s', 4);
-    irsvar = temp(1);
-    jrsini = temp(2);
-    jrsfin = temp(3);
-    jrstep = temp(4);
-
-tline = fgetl(infile); %L18
-iBCinv = sscanf(tline, '%f %*s', 1);
-
-%% i/o settings
-tline = fgetl(infile); %L19
-tline = fgetl(infile); %L20
-iRecover = sscanf(tline, '%f %*s', 1);
-
-tline = fgetl(infile); %L21
-iSave = sscanf(tline, '%f %*s', 1);
-
-tline = fgetl(infile); %L22
-iCubeComp = sscanf(tline, '%f %*s', 1);
-
-tline = fgetl(infile); %L23
-nWrite = sscanf(tline, '%f %*s', 1);
-
-
-%% modeling conditions
-tline = fgetl(infile); %L24
-tline = fgetl(infile); %L25
-interactionType = sscanf(tline, '%f %*s', 1);
-
-
-tline = fgetl(infile); %L26
-temp = sscanf(tline, '%f %f %f %*s', 3);
-    iUpdateOri = temp(1);
-    iUpdateMorph = temp(2);
-    iUpdateHardening = temp(3);
-
-
-tline = fgetl(infile); %L27
-nNeighbor = sscanf(tline, '%f %*s', 1);
-
-tline = fgetl(infile); %L28
-iFluctuation = sscanf(tline, '%f %*s', 1);
-
-
-
-%% deformation processes
-tline = fgetl(infile); %L29
-tline = fgetl(infile); %L30
-nProcess = sscanf(tline, '%f %*s', 1);
-
-processType = zeros([nProcess 1]);
-processDetail = cell(nProcess, 1);
-tline = fgetl(infile); %L31
-
-for i = 1:nProcess
-    tline = fgetl(infile); %L32
-    processType(i) = sscanf(tline, '%f %*s', 1);
-    tline = fgetl(infile); %L33
-    processDetail{i} = tline;
+    % loop over each distinct slip system in the family
+    for j = 1:nsmX(i)
+        tline = fgetl(infile);
+        modePlaneDir(i,j,:) = sscanf(tline,mfmt);        
+    end
+    
 end
 
-fclose(infile)
+% Constitutive block
+tline = fgetl(infile); % *Constitutive law
+tline = fgetl(infile); 
+    constitutive = sscanf(tline,'%i %*s',1);
+tline = fgetl(infile);    
+    iRateSens = sscanf(tline,'%i %*s',1);
+tline = fgetl(infile);    
+    grainSize = sscanf(tline,'%f %*s',1);
+
+% initialize variables
+nRSX = zeros(nModesActive,1);
+voce = zeros(nModesActive,4);
+hpFactor = zeros(nModesActive,1);
+latentHard = zeros(nModesActive,nModesActive);
+iSecondTwin = zeros(nModesActive,1);
+twThresh1 = zeros(nModesActive,1);
+twThresh2 = zeros(nModesActive,1);
+    
+    
+% Loop through activeModes
+for i = 1:nModesActive
+    
+    currentMode = activeModes(i);
+    tline = fgetl(infile); %Label
+    tline = fgetl(infile); % nrsx
+        nRSX(i) = sscanf(tline,'%u %*s',1);
+    tline = fgetl(infile); % voce, hp factor
+        temp = sscanf(tline, '%f %f %f %f %f %*s',5);
+        voce(i,:) = temp(1:4);
+        hpFactor(i) = temp(5);
+    tline = fgetl(infile); % latent hardening
+        latentHard(i,:) = sscanf(tline,[repmat(['%f '],[1 nModesActive]) '%*s'],nModesActive);
+    
+    % if mode is a twin mode, there's an extra line
+    if iTwTypeX(currentMode) ~= 0 
+        tline = fgetl(infile); 
+            temp = sscanf(tline, '%f %f %f %*s',3);
+            iSecondTwin(currentMode) = temp(1);
+            twThresh1(currentMode) = temp(2);
+            twThresh2(currentMode) = temp(3); 
+    end
+    
+    
+    
+end
+
+
+fclose(infile);
 
 
 

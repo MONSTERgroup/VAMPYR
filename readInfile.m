@@ -18,10 +18,10 @@ phaseFrac = sscanf(tline,varLengthStrFormat(nPhase),nPhase);
 %% Phase info
 %Initialize the phase-specific variables
 gShapeControl = repmat(0,[nPhase 1]);
-fragmentation = repmat(0,[nPhase 1]);
-critAspectRatio = repmat(25,[nPhase 1]);
-ellipsoidAspect = repmat([1 1 1],[nPhase 1]);
-ellipsoidAxesAngles = repmat([0 0 0],[nPhase 1]);
+iFragment = repmat(0,[nPhase 1]);
+critAspect = repmat(25,[nPhase 1]);
+axesRatio = repmat([1 1 1],[nPhase 1]);
+axesEuler = repmat([0 0 0],[nPhase 1]);
 fnameTEX = cell(nPhase,1);
 fnameSX = cell(nPhase,1);
 fnameMORPH = cell(nPhase,1); 
@@ -32,12 +32,12 @@ for i = 1:nPhase %get all the parameters for each phase
     tline = fgetl(infile); %L5
     temp = sscanf(tline, '%f %f %f %*s', 3);
         gShapeControl(i) = temp(1);
-        fragmentation(i) = temp(2);
-        critAspectRatio(i) = temp(3);
+        iFragment(i) = temp(2);
+        critAspect(i) = temp(3);
     tline = fgetl(infile); %L6
-    ellipsoidAspect(i,:) = sscanf(tline, '%f %f %f %*s', 3)';
+    axesRatio(i,:) = sscanf(tline, '%f %f %f %*s', 3)';
     tline = fgetl(infile); %L7
-    ellipsoidAxesAngles(i,:) = sscanf(tline, '%f %f %f %*s', 3)';
+    axesEuler(i,:) = sscanf(tline, '%f %f %f %*s', 3)';
     tline = fgetl(infile); %L8
     tline = fgetl(infile); %L9
     fnameTEX{i} = tline;
@@ -56,7 +56,7 @@ tline = fgetl(infile); %L14 (assuming single phase)
 tline = fgetl(infile); %L15
 temp = sscanf(tline, '%f %f %f %f %*s', 4);
     errStress = temp(1);
-    errStrRateD = temp(2);
+    errStrainRateD = temp(2);
     errModuli = temp(3); 
     errSecondOrder = temp(4);
 
@@ -94,21 +94,21 @@ nWrite = sscanf(tline, '%f %*s', 1);
 %% modeling conditions
 tline = fgetl(infile); %L24
 tline = fgetl(infile); %L25
-interactionType = sscanf(tline, '%f %*s', 1);
+iHardLaw = sscanf(tline, '%f %*s', 1);
 
 
 tline = fgetl(infile); %L26
 temp = sscanf(tline, '%f %f %f %*s', 3);
-    iUpdateOri = temp(1);
-    iUpdateMorph = temp(2);
-    iUpdateHardening = temp(3);
+    updateOri = temp(1);
+    updateShape = temp(2);
+    updateHard = temp(3);
 
 
 tline = fgetl(infile); %L27
-nNeighbor = sscanf(tline, '%f %*s', 1);
+nNeigh = sscanf(tline, '%f %*s', 1);
 
 tline = fgetl(infile); %L28
-iFluctuation = sscanf(tline, '%f %*s', 1);
+iFluct = sscanf(tline, '%f %*s', 1);
 
 
 
@@ -117,18 +117,17 @@ tline = fgetl(infile); %L29
 tline = fgetl(infile); %L30
 nProcess = sscanf(tline, '%f %*s', 1);
 
-processType = zeros([nProcess 1]);
-processDetail = cell(nProcess, 1);
+defProcess = cell(nProcess,3);
 tline = fgetl(infile); %L31
 
 for i = 1:nProcess
     tline = fgetl(infile); %L32
-    processType(i) = sscanf(tline, '%f %*s', 1);
+    defProcess{i,1} = sscanf(tline, '%f %*s', 1);
     tline = fgetl(infile); %L33
-    processDetail{i} = tline;
+    defProcess{i,3} = tline;
 end
 
-fclose(infile)
+fclose(infile);
 
 
 
