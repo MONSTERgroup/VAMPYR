@@ -1,4 +1,4 @@
-classdef vpscParameters < vpscParametersDefaults
+classdef vpscParameters < defaults.vpscParametersDefaults
     %UNTITLED6 Summary of this class goes here
     %   Detailed explanation goes here
     
@@ -12,14 +12,13 @@ classdef vpscParameters < vpscParametersDefaults
             %   Read in vpsc7.in or default to default parameters
             
             % generate defaults and return if no inputs
-            param = param@vpscParametersDefaults;
+            param = param@defaults.vpscParametersDefaults;
             if nargin < 1; return; end
 
             param.doNormalizePhaseFrac = get_flag(varargin,'NormalizePhaseFrac');
             varargin = delete_option(varargin,'NormalizePhaseFrac');
             
             % read from file if first argument is valid file path
-            
             if nargin >= 1 && looksLikePath(varargin{1})
                 if ~isfile(varargin{1})
                     ME = MException('MTEX:VPSC:noInputFileAtPath',...
