@@ -2,10 +2,9 @@
 pname = 'C:\Users\victoria.miller\Documents\GitHub\Random-VPSC-MTEX-code-snippets\Sample Files to Write';
 fname_in = [pname filesep 'vpsc7.in'];
 
-fclose all
-
 %% Header info   
 infile = fopen(fname_in,'w');
+c = onCleanup(@()fclose(infile));
 fprintf(infile,'%u                          number of elements (nelem)\n',nElement);%L1
 fprintf(infile,'%u                          number of phases (nph)\n',nPhase); %L2
     fmt = [varLengthStrFormat(nPhase) '\n'];                     
@@ -21,7 +20,7 @@ for i = 1:nPhase
     fprintf(infile, '%f %f %f                  init Eul ang ellips axes (dummy if ishape=3,4)\n', [axesEuler(i,1) axesEuler(i,2) axesEuler(i,3)]); %L7
     fprintf(infile, '* name and path of texture file (filetext)\n'); %L8
     fprintf(infile, '%s\n', fnameTEX{i}); %L9
-    fprintf(infile, '* name and path of single crystal file (filecrys)\n') %L10
+    fprintf(infile, '* name and path of single crystal file (filecrys)\n'); %L10
     fprintf(infile, '%s\n', fnameSX{i}); %L11
     fprintf(infile,'* name and path of grain shape file (dummy if ishape=0) (fileaxes)\n'); %L12
     fprintf(infile, '%s\n', fnameMORPH{i}); %L13

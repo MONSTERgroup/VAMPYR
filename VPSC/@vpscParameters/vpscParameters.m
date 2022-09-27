@@ -3,7 +3,7 @@ classdef vpscParameters < vpscParametersDefaults
     %   Detailed explanation goes here
     
     properties
-        test
+        doNormalizePhaseFrac = false;
     end
     
     methods
@@ -14,9 +14,18 @@ classdef vpscParameters < vpscParametersDefaults
             % generate defaults and return if no inputs
             param = param@vpscParametersDefaults;
             if nargin < 1; return; end
+
+            param.doNormalizePhaseFrac = get_flag(varargin,'NormalizePhaseFrac');
+            varargin = delete_option(varargin,'NormalizePhaseFrac');
             
             % read from file if first argument is valid file path
-            if nargin >= 1 && isfile(varargin{1})
+            
+            if nargin >= 1 && looksLikePath(varargin{1})
+                if ~isfile(varargin{1})
+                    ME = MException('MTEX:VPSC:noInputFileAtPath',...
+                        'There is no VPSC input file at: %s', varargin{1});
+                    throw(ME);
+                end
                 param.fromfile(varargin{1});
             end
 
@@ -30,150 +39,43 @@ classdef vpscParameters < vpscParametersDefaults
             param.gShapeControl = get_option(varargin,'gShapeControl', extendArrayVert(param.gShapeControl, param.nPhase), {'int', 'uint', 'double'});
             param.fragmentation = get_option(varargin,'fragmentation', extendArrayVert(param.fragmentation, param.nPhase), {'int', 'uint', 'double'});
             param.critAspectRatio = get_option(varargin,'critAspectRatio', extendArrayVert(param.critAspectRatio, param.nPhase), {'int', 'uint', 'double'});
-            param.fnameTEX = get_option(varargin,'TextureFile', extendArrayVert(param.fnameTEX, param.nPhase), {'cell', 'char', 'string'});
-            % set parameters dependent on nProcess
+            param.ellipsoidAspect = get_option(varargin,'ellpsoidAspect', extendArrayVert(param.ellipsoidAspect, param.nPhase),{'int', 'uint', 'double'});
+            param.ellipsoidAxesAngles = get_option(varargin,'ellpsoidAxesAngles', extendArrayVert(param.ellipsoidAxesAngles, param.nPhase),{'int', 'uint', 'double'});
             
-        end
-    end
-    
-    methods(Static)
-        function [strFormat] = varLengthStrFormat(nNumber)
-            strFormat = repmat(['%f '],[1 nNumber]);
-            strFormat = [strFormat '%s'];
+            % array of names 'phase1.tex...phaseN.tex'
+            fnameArray = @(fn, nP) cellfun(@(y) sprintf('phase%u.%s', y,fn),num2cell(1:nP), 'UniformOutput',false)';
+            param.fnameTEX = get_option(varargin,'TEX', fnameArray('tex', param.nPhase), {'cell', 'char', 'string'});
+            param.fnameSX = get_option(varargin,'SX', fnameArray('sx', param.nPhase), {'cell', 'char', 'string'});
+            param.fnameMORPH = get_option(varargin,'MORPH', fnameArray('morph', param.nPhase), {'cell', 'char', 'string'});
+            
+            % set parameters dependent on nProcess
+            param.processType = get_option(varargin,'processType', extendArrayVert(param.processType, param.nPhase), {'int', 'uint', 'double'});
+            fnameArray = @(fn, nP) cellfun(@(y) sprintf('process%u.%s', y,fn),num2cell(1:nP), 'UniformOutput',false)';
+            param.fnameMORPH = get_option(varargin,'MORPH', fnameArray('def', param.nProcess), {'cell', 'char', 'string'});
+            
         end
     end
 
     methods
-        function fromfile(param, fname)
-            %% Load vpsc7.in
-            infile = fopen(fname);
-            
-            %% Read in header information
-            tline = fgetl(infile);
-            param.nElement = sscanf(tline, '%f %*s', 1);
-            tline = fgetl(infile);
-            param.nPhase = sscanf(tline, '%f %*s', 1);
-            tline = fgetl(infile);
-            param.phaseFrac = sscanf(tline,varLengthStrFormat(param.nPhase))';
-            
-            %% Phase Info
-            % Initialize the phase-specific variables
-            
-            %%%%%%@Begley, this can go when we set the defaults?
-            param.gShapeControl = repmat(0,[param.nPhase 1]);
-            param.fragmentation = repmat(0,[param.nPhase 1]);
-            param.critAspectRatio = repmat(25,[param.nPhase 1]);
-            param.ellipsoidAspect = repmat([1 1 1],[param.nPhase 1]);
-            param.ellipsoidAxesAngles = repmat([0 0 0],[param.nPhase 1]);
-            param.fnameTEX = cell(param.nPhase,1);
-            param.fnameSX = cell(param.nPhase,1);
-            param.fnameMORPH = cell(param.nPhase,1);
-            
-            for i = 1:param.nPhase %get all the parameters for each phase
-                
-                tline = fgetl(infile); %L4
-                tline = fgetl(infile); %L5
-                temp = sscanf(tline, '%f %f %f %*s', 3);
-                param.gShapeControl(i) = temp(1);
-                param.fragmentation(i) = temp(2);
-                param.critAspectRatio(i) = temp(3);
-                tline = fgetl(infile); %L6
-                param.ellipsoidAspect(i,:) = sscanf(tline, '%f %f %f %*s', 3)';
-                tline = fgetl(infile); %L7
-                param.ellipsoidAxesAngles(i,:) = sscanf(tline, '%f %f %f %*s', 3)';
-                tline = fgetl(infile); %L8
-                tline = fgetl(infile); %L9
-                param.fnameTEX{i} = tline;
-                tline = fgetl(infile); %L10
-                tline = fgetl(infile); %L11
-                param.fnameSX{i} = tline;
-                tline = fgetl(infile); %L12
-                tline = fgetl(infile); %L13
-                param.fnameMORPH{i} = tline;
-                
+        result = fromfile(param, fname)
+        result = tofile(param, fname)
+    end
+
+    methods
+        function set.doNormalizePhaseFrac(param, val)
+            if strcmp(val, 'NormalizePhaseFrac')
+                param.doNormalizePhaseFrac = true;
+            else
+                param.doNormalizePhaseFrac = false;
             end
-            clear i temp
-            
-            %% Convergence parameters
-            tline = fgetl(infile); %L14 (assuming single phase)
-            tline = fgetl(infile); %L15
-            temp = sscanf(tline, '%f %f %f %f %*s', 4);
-            param.errStress = temp(1);
-            param.errStrRateD = temp(2);
-            param.errModuli = temp(3);
-            param.errSecondOrder = temp(4);
-            
-            tline = fgetl(infile); %L16
-            temp = sscanf(tline, '%f %f %f %*s', 3);
-            param.itMaxTot = temp(1);
-            param.itMaxExternal = temp(2);
-            param.itMaxInternalSO = temp(3);
-            
-            tline = fgetl(infile); %L17
-            temp = sscanf(tline, '%f %f %f %f %*s', 4);
-            param.irsvar = temp(1);
-            param.jrsini = temp(2);
-            param.jrsfin = temp(3);
-            param.jrstep = temp(4);
-            
-            tline = fgetl(infile); %L18
-            param.iBCinv = sscanf(tline, '%f %*s', 1);
-            
-            %% i/o settings
-            tline = fgetl(infile); %L19
-            tline = fgetl(infile); %L20
-            param.iRecover = sscanf(tline, '%f %*s', 1);
-            
-            tline = fgetl(infile); %L21
-            param.iSave = sscanf(tline, '%f %*s', 1);
-            
-            tline = fgetl(infile); %L22
-            param.iCubeComp = sscanf(tline, '%f %*s', 1);
-            
-            tline = fgetl(infile); %L23
-            param.nWrite = sscanf(tline, '%f %*s', 1);
-            
-            
-            %% modeling conditions
-            tline = fgetl(infile); %L24
-            tline = fgetl(infile); %L25
-            param.interactionType = sscanf(tline, '%f %*s', 1);
-            
-            
-            tline = fgetl(infile); %L26
-            temp = sscanf(tline, '%f %f %f %*s', 3);
-            param.iUpdateOri = temp(1);
-            param.iUpdateMorph = temp(2);
-            param.iUpdateHardening = temp(3);
-            
-            
-            tline = fgetl(infile); %L27
-            param.nNeighbor = sscanf(tline, '%f %*s', 1);
-            
-            tline = fgetl(infile); %L28
-            param.iFluctuation = sscanf(tline, '%f %*s', 1);
-            
-            
-            
-            %% deformation processes
-            tline = fgetl(infile); %L29
-            tline = fgetl(infile); %L30
-            param.nProcess = sscanf(tline, '%f %*s', 1);
-            
-            param.processType = zeros([param.nProcess 1]);
-            param.processDetail = cell(param.nProcess, 1);
-            tline = fgetl(infile); %L31
-            
-            for i = 1:param.nProcess
-                tline = fgetl(infile); %L32
-                param.processType(i) = sscanf(tline, '%f %*s', 1);
-                tline = fgetl(infile); %L33
-                param.processDetail{i} = tline;
-            end
-            
-            fclose(infile);
         end
     end
     
 end
 
+function out = looksLikePath(str)
+    pat1 = asManyOfPattern(alphanumericsPattern(1)) + '.' + asManyOfPattern(alphanumericsPattern(1));
+    pat2 = filesep + asManyOfPattern(alphanumericsPattern(1));
+    pat = pat1+pat2;
+    out = contains(str, pat);
+end

@@ -46,7 +46,7 @@ classdef vpscParametersDefaults < handle
     methods
         function param = vpscParametersDefaults()
             %vpscParametersDefaults Construct an instance of this class
-            %   Read in vpsc7.in or default to default parameters
+            %   Read in vpsc7.in or default to default paramseters
 
             param.nElement = 1;
             param.nPhase = 1;
@@ -56,9 +56,9 @@ classdef vpscParametersDefaults < handle
             param.critAspectRatio = 25;
             param.ellipsoidAspect = [1 1 1];
             param.ellipsoidAxesAngles = [0 0 0];
-            param.fnameTEX = {fullfile('a.tex')};
-            param.fnameSX = {fullfile('a.sx')};
-            param.fnameMORPH = {fullfile('a.morph')};
+            param.fnameTEX = {fullfile('phase1.tex')};
+            param.fnameSX = {fullfile('phase1.sx')};
+            param.fnameMORPH = {fullfile('phase1.morph')};
             param.errStress = 0.001;
             param.errStrRateD = 0.001;
             param.errModuli = 0.001;
@@ -83,10 +83,27 @@ classdef vpscParametersDefaults < handle
             param.iFluctuation = 0;
             param.nProcess = 1;
             param.processType = 0;
-            param.processDetail = {'process.def'};
+            param.processDetail = {'process1.def'};
             param.pcysSection = [1 2];
             param.lankfordInc = 10;
 
+        end
+    end
+
+    methods %getters/setters
+        function set.phaseFrac(param, phaseFrac)
+            if sum(phaseFrac)==1
+                param.phaseFrac = phaseFrac;
+            elseif param.doNormalizePhaseFrac
+                param.phaseFrac = phaseFrac./sum(phaseFrac);
+            else
+                errID = 'MTEX:VPSC:incompletePhaseFractions';
+                errMSG = sprintf('The phase fractions [ %s] do not sum to 1.', repmat('%g ',[1 length(phaseFrac)]));
+                errMSG = sprintf(errMSG, phaseFrac);
+                errMSG = sprintf('%s\nUse values that sum to 1 or set optional flag ''NormalizePhaseFrac'' in vpscParameters.', errMSG);
+                ME = MException(errID,errMSG);
+                throwAsCaller(ME);
+            end
         end
     end
 
