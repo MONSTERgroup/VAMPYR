@@ -1,4 +1,4 @@
-classdef vpscRunner < handle
+classdef vpscJob < handle
 % class guiding through the process of running VPSC. 
 %
 % Syntax

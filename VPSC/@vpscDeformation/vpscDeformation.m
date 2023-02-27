@@ -13,5 +13,6 @@ classdef vpscDeformation < defaults.vpscDeformationDefaults
         end
 
        fromfile(def, fname_def);
+       tofile(def, fname_def);
     end
 end

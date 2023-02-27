@@ -43,7 +43,7 @@ def.cauchy_flag(2,2:3) = sscanf(tline, '%i %i %*s');
 tline = fgetl(infile); %13
 def.cauchy_flag(3,3) = sscanf(tline, '%i %*s');
 
-%def.update_cauchy_flag;
+def.update_cauchy_flag;
 
 %% read cauchy stress
 tline = fgetl(infile); %14
@@ -54,7 +54,7 @@ def.cauchy_stress(2,2:3) = sscanf(tline, '%f %f %*s');
 tline = fgetl(infile); %17
 def.cauchy_stress(3,3) = sscanf(tline, '%f %*s');
 
-%def.update_cauchy_stress;
+def.update_cauchy_stress;
 
 end
 
