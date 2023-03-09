@@ -27,6 +27,8 @@ classdef vpscRun < handle
         processes;
         texture_in;
         texture_out;
+        postmort_in;
+        postmort_out;
         morphology_in;
         morphology_out;
         stress_strain;
@@ -34,7 +36,7 @@ classdef vpscRun < handle
         timestamp;
         id;
         magic_vpsc_box_path = 'VPSC\magic_vpsc_box';
-        vpsc_executable_name = 'vpsc_precise.exe';
+        vpsc_executable_name = 'vpsc7_AllTheSlipSystems.exe';
         output_path;
     end
 
@@ -54,6 +56,11 @@ classdef vpscRun < handle
                 run.processes = old_run.processes;
                 run.texture_in = old_run.texture_out;
                 run.morphology_in = old_run.morphology_out;
+                run.postmort_in = old_run.postmort_out;
+                run.parameters.iRecover = 1;
+                if run.parameters.nProcess > 1
+                    warning("More than one process, confirm that run.parameters.iSave is set to the desired step")
+                end
                 return;
             end
 

@@ -2,7 +2,7 @@
 2                        number of phases (nph)
 0.55628 0.44372          relative vol. fract. of phases (wph(i))
 *INFORMATION ABOUT PHASE #1
-0 0 25                   grain shape contrl, fragmentn, crit aspect ratio
+2 0 25                   grain shape contrl, fragmentn, crit aspect ratio
 1 1 1                    initial ellipsoid ratios (dummy if ishape=4
 0 0 0                    init Eul ang ellips axes (dummy if ishape=3,4)
 * name and path of texture file (filetext)
@@ -12,7 +12,7 @@ beta.SX
 * name and path of grain shape file (dummy if ishape=0) (fileaxes)
 betaShape.morph
 *INFORMATION ABOUT PHASE #2
-0 0 25                   grain shape contrl, fragmentn, crit aspect ratio
+2 0 25                   grain shape contrl, fragmentn, crit aspect ratio
 1 1 1                    initial ellipsoid ratios (dummy if ishape=4
 0 0 0                    init Eul ang ellips axes (dummy if ishape=3,4)
 * name and path of texture file (filetext)
@@ -27,8 +27,8 @@ alphaShape.morph
 0 2 10 2                 irsvar & jrsini,jrsfin,jrstep (dummy if irsvar=0)
 1                        ibcinv (0: don't use <Bc>**-1, 1: use <Bc>**-1 in SC eq)
 *INPUT/OUTPUT SETTINGS FOR THE RUN (default is zero)
-0                        irecover:read grain states from POSTMORT.IN (1) or not (0)?
-0                        isave:   write grain states in POSTMORT.OUT at step 'isave'?
+1                        irecover:read grain states from POSTMORT.IN (1) or not (0)?
+6                        isave:   write grain states in POSTMORT.OUT at step 'isave'?
 0                        icubcomp:calculate fcc rolling components?
 0                        nwrite (frequency of texture downloads)
 *MODELING CONDITIONS FOR THE RUN

@@ -8,9 +8,13 @@ run.parameters.tofile(fullfile(run.magic_vpsc_box_path, 'vpsc7.in'));
 for ii = 1:run.n_phases
     run.single_crystal{ii}.tofile(fullfile(run.magic_vpsc_box_path, run.parameters.fnameSX{ii}));
     run.texture_in{ii}.tofile(fullfile(run.magic_vpsc_box_path, run.parameters.fnameTEX{ii}));
-    if run.parameters.gShapeControl == 4
+    if ismember(run.parameters.gShapeControl, [3, 4])
         run.morphology_in{ii}.tofile(fullfile(run.magic_vpsc_box_path, run.parameters.fnameMORPH{ii}));
     end
+end
+
+if run.parameters.iRecover
+        run.postmort_in.tofile(fullfile(run.magic_vpsc_box_path, "POSTMORT.IN"));
 end
 
 for ii = 1:run.n_processes
