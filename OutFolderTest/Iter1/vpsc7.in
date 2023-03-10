@@ -28,7 +28,7 @@ alphaShape.morph
 1                        ibcinv (0: don't use <Bc>**-1, 1: use <Bc>**-1 in SC eq)
 *INPUT/OUTPUT SETTINGS FOR THE RUN (default is zero)
 0                        irecover:read grain states from POSTMORT.IN (1) or not (0)?
-6                        isave:   write grain states in POSTMORT.OUT at step 'isave'?
+51                       isave:   write grain states in POSTMORT.OUT at step 'isave'?
 0                        icubcomp:calculate fcc rolling components?
 0                        nwrite (frequency of texture downloads)
 *MODELING CONDITIONS FOR THE RUN
