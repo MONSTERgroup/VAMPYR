@@ -1,13 +1,13 @@
 classdef vpscTexture < handle
-    %UNTITLED Summary of this class goes here
-    %   Detailed explanation goes here
+    % VPSCTEXTURE Texture object for VPSC input or output
+    %   Texture object for VPSC input or output
 
     properties
-        ngrain;
-        orientations;
-        weights;
-        CS;
-        SS;
+        ngrain;         % number of grains
+        orientations;   % list of orientations
+        weights;        % weight correspoinding to each orientation
+        CS;             % MTEX crystal symmetry 
+        SS;             % MTEX specimen symmetry
     end
 
     methods

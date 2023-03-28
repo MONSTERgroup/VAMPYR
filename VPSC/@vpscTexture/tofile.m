@@ -1,6 +1,8 @@
 function tofile(tex, tex_file)
-%UNTITLED3 Summary of this function goes here
-%   Detailed explanation goes here
+%TOFILE Writes vpsc TEX file from vpscTexture variable
+%   Writes vpsc TEX file (including orientations, weights, and number of
+%   grains) from vpscTexture variable. 
+%   Uses Bunge notation. 
     
 %% Load tex_file
 try

@@ -1,6 +1,7 @@
 function fromfile(tex, fname)
-%UNTITLED2 gets last set of texture data from file
-%   Detailed explanation goes here
+%FROMFILE gets last set of texture data from file
+%   Loads vpscTexture object from text file, including orientations,
+%   weights, and ngrain. 
 
 %% Load tex_file
 try
