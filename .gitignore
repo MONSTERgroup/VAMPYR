@@ -4,3 +4,25 @@
 
 *.asv
 *.asv
+
+# Magic VPSC box
+VPSC/magic_vpsc_box/*
+VPSC/magic_vpsc_box/ACT_PH1.OUT
+VPSC/magic_vpsc_box/ACT_PH2.OUT
+VPSC/magic_vpsc_box/alpha.SX
+VPSC/magic_vpsc_box/alphaTex.tex
+VPSC/magic_vpsc_box/beta.SX
+VPSC/magic_vpsc_box/betaTex.tex
+VPSC/magic_vpsc_box/MOR_PH1.OUT
+VPSC/magic_vpsc_box/MOR_PH2.OUT
+VPSC/magic_vpsc_box/NEIGHBORS.OUT
+VPSC/magic_vpsc_box/RERR.OUT
+VPSC/magic_vpsc_box/RUN_LOG.OUT
+VPSC/magic_vpsc_box/STAT_AX.OUT
+VPSC/magic_vpsc_box/STATS.OUT
+VPSC/magic_vpsc_box/STR_STR.OUT
+VPSC/magic_vpsc_box/TEX_PH1.OUT
+VPSC/magic_vpsc_box/TEX_PH2.OUT
+VPSC/magic_vpsc_box/VelGrad.def
+VPSC/magic_vpsc_box/vpsc7.in
+VPSC/magic_vpsc_box/WNEIGH.OUT
