@@ -1,5 +1,5 @@
 function fromfile(act, act_file)
-%UNTITLED Summary of this function goes here
+%FROMFILE generates vpscSlipActivity from ACT_PHx.OUT file
 %   Detailed explanation goes here
 
 %% Load act_file

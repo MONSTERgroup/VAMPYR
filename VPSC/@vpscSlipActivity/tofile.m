@@ -1,5 +1,5 @@
 function tofile(act, act_file)
-%TOFILE Summary of this function goes here
+%TOFILE writes ACT_PHx.OUT file from vpscSlipActivity variable
 %   Detailed explanation goes here
 
 
