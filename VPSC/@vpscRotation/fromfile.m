@@ -1,5 +1,5 @@
 function fromfile(r, r_file)
-%FROMFILE Summary of this function goes here
+%FROMFILE Converts VSPC rotation file into VAMPYR (MTEX) rotation
 %   Detailed explanation goes here
 
 try

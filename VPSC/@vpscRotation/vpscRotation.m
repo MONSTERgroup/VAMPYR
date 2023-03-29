@@ -1,9 +1,13 @@
 classdef vpscRotation < handle
-    %VPSCROTATION Summary of this class goes here
-    %   Detailed explanation goes here
+    %VPSCROTATION Rigid body rotation matrix for VPSC, represented as MTEX
+    %rotation
+    %   When IGVAR = 4, VPSC executes a rigid body rotation on all of the
+    %   grains. This represents processes like crossrolling and ECAE.
+    %   VPSC represents this rotation as a matrix, but it is held in VAMPYR
+    %   as an MTEX rotation object. 
     
     properties
-        rot
+        rot % rotation 
     end
     
     methods

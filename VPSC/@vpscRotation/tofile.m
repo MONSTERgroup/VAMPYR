@@ -1,5 +1,5 @@
 function tofile(r,r_file)
-%UNTITLED Summary of this function goes here
+%TOFILE Writes rotation matrix file from VAMPYR (MTEX) rotation
 %   Detailed explanation goes here
 
 %% Open writable rotation file
