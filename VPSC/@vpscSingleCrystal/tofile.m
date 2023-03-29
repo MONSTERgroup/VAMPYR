@@ -1,5 +1,5 @@
 function tofile(sx, fname_sx)
-%TOFILE Summary of this function goes here
+%TOFILE Writes vpscSingleCrystal variable to VPSC *.SX file
 %   Detailed explanation goes here
 
 %% Open writable SX file

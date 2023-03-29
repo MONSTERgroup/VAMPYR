@@ -1,6 +1,8 @@
 classdef vpscSingleCrystal < defaults.vpscSingleCrystalDefaults
-    %VPSCSINGLECRYSTAL Summary of this class goes here
-    %   Detailed explanation goes here
+    %VPSCSINGLECRYSTAL Contains the *.SX file information for a given phase
+    %   The vpsc *.SX file contains the single crystal information for a
+    %   given phase, including the slip/twinning systems, hardening
+    %   parameters, etc. 
 
     properties
     end

@@ -1,5 +1,5 @@
 function fromfile(sx,fname_sx)
-%FROMFILE Summary of this function goes here
+%FROMFILE creates vpscSingleCrystal variable from VPSC *.SX file
 %   Detailed explanation goes here
 
 %% Load SX file
