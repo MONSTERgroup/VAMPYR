@@ -4,5 +4,7 @@
 A toolbox for running and automating the Viscoplastic Self-Consistent (VPSC) model using MATLAB, depending on the MTEX crystallographic toolbox.
 
 Current dependencies:
-VPSC7 ([VPSC8](https://github.com/lanl/VPSC_code) compatibility forthcoming)
-MTEX 5.8 or newer
+- VPSC7 ([VPSC8](https://github.com/lanl/VPSC_code) compatibility forthcoming)
+- MTEX 5.8 or newer
+
+`RunTextScript.mlx` demonstrates the basic functionality of the API.
