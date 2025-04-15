@@ -4,3 +4,5 @@
 
 *.asv
 *.asv
+
+/VPSC/export_fig/*
