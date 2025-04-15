@@ -27,13 +27,13 @@ run_0 = vpscRun(parameters_0);
     run_0.texture_in{1} = mgTex_0; 
     run_0.processes{1} = tensile_process;
     run_0.output_path = '0 degree';
-    run_0.magic_vpsc_box_path = 'C:\Users\victoria.miller\Documents\GitHub\Random-VPSC-MTEX-code-snippets\VPSC\magic_vpsc_box';
+    run_0.magic_vpsc_box_path = 'M:\Documents\MATLAB\VAMPYR-main\VPSC\magic_vpsc_box';
 run_90 = vpscRun(parameters_90); 
     run_90.single_crystal{1} = mgSX;
     run_90.texture_in{1} = mgTex_90; 
     run_90.processes{1} = tensile_process;
     run_90.output_path = '90 degree';
-    run_90.magic_vpsc_box_path = 'C:\Users\victoria.miller\Documents\GitHub\Random-VPSC-MTEX-code-snippets\VPSC\magic_vpsc_box';
+    run_90.magic_vpsc_box_path = 'M:\Documents\MATLAB\VAMPYR-main\VPSC\magic_vpsc_box';
 
 %% Throw it into an optimization loop: 
 [x, exitflag] = optimizeVPSCparameters(run_0,run_90,exp_strain_0,exp_strain_90,exp_stress_0,exp_stress_90) 
@@ -45,12 +45,47 @@ run_90 = vpscRun(parameters_90);
         sim_stress_0 = str2double(run_0.stress_strain.stressVM); 
         sim_stress_90 = str2double(run_90.stress_strain.stressVM);
 
+% figure; 
+% hold on
+% plot(exp_strain_0,exp_stress_0, ':', 'Color', [0.5020 0.5020 1.0000]);
+% plot(exp_strain_90,exp_stress_90, ':', 'Color', [0.9255 0.6627 0.5490]);
+% plot(sim_strain_0,sim_stress_0, 'Color', [0 0 1]);
+% plot(sim_strain_90,sim_stress_90, 'Color', [0.8500 0.3250 0.0980]);
+% xlabel('strain')
+% ylabel('stress (MPa)')
+% ylim([200 350])
+% xlim([0 0.1])
+% PrettyPlotsSingle;
+% legend({'RD', 'TD', 'VPSC RD','VPSC TD'},'Location','southeast')
+% hold off
+% 
+% export_fig optimization_results.tif -png -m2 -transparent
+
 figure; 
-plot(exp_strain_90,exp_stress_90)
 hold on
-plot(exp_strain_0,exp_stress_0)
-plot(sim_strain_0,sim_stress_0)
-plot(sim_strain_90,sim_stress_90)
+plot(sim_strain_0,sim_stress_0, 'Color', [0 0 1]);
 xlabel('strain')
-ylabel('stress')
+ylabel('stress (MPa)')
+%ylim([0 375])
+% xlim([0 0.1])
 PrettyPlotsSingle;
+% legend({'RD', 'TD', 'VPSC RD','VPSC TD'},'Location','southeast')
+hold off
+
+export_fig single_stress_Strain -png -m2 -transparent
+
+
+h = Miller({0,0,0,1}, mgTex_0.CS);
+psi = deLaValleePoussinKernel('halfwidth',6*degree);
+original_ODF = calcDensity(mgTex_0.orientations, 'kernel', psi);
+
+figure;
+plotPDF(original_ODF, h);
+hold on;
+plotPDF(original_ODF, h, 'contour', 0.5:0.5:3,'linecolor', ...
+    'black', 'linewidth', 2, 'ShowText', 'on');
+hold off;
+mtexColorbar;
+mtexColorMap LaboTeX;
+
+export_fig texture_figure -png -m2 -transparent

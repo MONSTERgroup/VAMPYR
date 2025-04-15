@@ -3,7 +3,7 @@ function write_inputs_to_magic_vpsc_box(run)
 %   Detailed explanation goes here
 
 %disp(fullfile(run.magic_vpsc_box_path, 'vpsc7.in'));
-run.parameters.tofile(fullfile(run.magic_vpsc_box_path, 'vpsc7.in'));
+run.parameters.tofile(fullfile(run.magic_vpsc_box_path, 'vpsc8.in'));
 
 for ii = 1:run.n_phases
     run.single_crystal{ii}.tofile(fullfile(run.magic_vpsc_box_path, run.parameters.fnameSX{ii}));

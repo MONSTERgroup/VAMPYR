@@ -8,13 +8,19 @@ try
     c = onCleanup(@()fclose(infile));
 catch me
     throw(me);
-end 
+end
 
 %% Read
 startRow = 2;
 formatSpec = ['%f%f' repmat('%f',[1,act.nmodes])];
-
-data = textscan(infile, formatSpec, 'Delimiter', '', 'WhiteSpace', '', 'TextType', 'string', 'HeaderLines' ,startRow-1, 'ReturnOnError', false, 'EndOfLine', '\r\n');
+tline = fgetl(infile);
+data = textscan(infile, formatSpec);%, 'Delimiter', '', 'WhiteSpace', '', 'TextType', 'string', 'HeaderLines' ,startRow-1, 'ReturnOnError', false, 'EndOfLine', '\r\n');
+tline = fgetl(infile);
+while ischar(tline)
+    % tline = fgetl(infile);
+    data = textscan(infile, formatSpec);%, 'Delimiter', '', 'WhiteSpace', '', 'TextType', 'string', 'HeaderLines' ,startRow-1, 'ReturnOnError', false, 'EndOfLine', '\r\n');
+    tline = fgetl(infile);
+end
 
 %% segment data
 

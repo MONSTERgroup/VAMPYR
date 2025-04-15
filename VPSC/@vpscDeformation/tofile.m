@@ -11,7 +11,7 @@ catch me
 end
 
 %% write first line
-fprintf(infile, '%u\t%u\t%.5f\t%.5f\t\t\tnsteps\tictrl\teqincr\ttemp\n', def.nsteps, def.ictrl, def.increment, def.temperature);
+fprintf(infile, '%u\t%u\t%7.8f\t%4.1f\t%4.1f\t\t\tnsteps\tictrl\teqincr\ttemp_i\ttemp_f\n', def.nsteps, def.ictrl, def.increment, def.temperature_i, def.temperature_f);
 
 %% write second line
 fprintf(infile, '* boundary conditions\n');
@@ -25,9 +25,9 @@ fprintf(infile, '\t\t\t\t\t\t|\n');
 
 %% write velocity gradient
 
-fprintf(infile, '%.5f\t%.5f\t%.5f\t\tudot\t|\tvel.grad\n', def.velocity_gradient(1,:));
-fprintf(infile, '%.5f\t%.5f\t%.5f\t\t\t\t|\n', def.velocity_gradient(2,:));
-fprintf(infile, '%.5f\t%.5f\t%.5f\t\t\t\t|\n', def.velocity_gradient(3,:));
+fprintf(infile, '%7.8f\t%7.8f\t%7.8f\t\tudot\t|\tvel.grad\n', def.velocity_gradient(1,:));
+fprintf(infile, '%7.8f\t%7.8f\t%7.8f\t\t\t\t|\n', def.velocity_gradient(2,:));
+fprintf(infile, '%7.8f\t%7.8f\t%7.8f\t\t\t\t|\n', def.velocity_gradient(3,:));
 fprintf(infile, '\t\t\t\t\t\t|\n');
 
 %% write cauchy stress flags

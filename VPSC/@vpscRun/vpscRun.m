@@ -35,8 +35,8 @@ classdef vpscRun < handle
         slip_activity;
         timestamp;
         id;
-        magic_vpsc_box_path = 'VPSC\magic_vpsc_box';
-        vpsc_executable_name = 'vpsc7_AllTheSlipSystems.exe';
+        magic_vpsc_box_path = 'D:\VAMPYR8\VPSC\magic_vpsc_box';
+        vpsc_executable_name = 'vpsc8.exe';
         output_path;
     end
 
@@ -64,6 +64,21 @@ classdef vpscRun < handle
                 return;
             end
 
+            if check_option(varargin,{'follow_no_postmort'})
+                old_run = varargin{1};
+                run.parameters = old_run.parameters;
+                run.single_crystal = old_run.single_crystal;
+                run.processes = old_run.processes;
+                run.texture_in = old_run.texture_out;
+                run.morphology_in = old_run.morphology_out;
+                run.postmort_in = old_run.postmort_out;
+                %run.parameters.iRecover = 1;
+                if run.parameters.nProcess > 1
+                    warning("More than one process, confirm that run.parameters.iSave is set to the desired step")
+                end
+                return;
+            end
+
             if isa(varargin{1},'vpscRun')
                 old_run = varargin{1};
                 run.parameters = old_run.parameters;
@@ -82,7 +97,7 @@ classdef vpscRun < handle
                     run.texture_in{ii} = vpscTexture;
                     run.morphology_in{ii} = vpscMorphology;
                 end
-                
+
                 for ii = 1:run.parameters.nProcess
                     if run.parameters.processType(ii) == 0
                         run.processes{ii} = vpscDeformation;

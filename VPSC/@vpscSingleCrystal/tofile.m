@@ -18,22 +18,22 @@ fprintf(infile, '%g\t%g\t%f\t\t%g\t%g\t%g         cdim(i),cang(i)\n',sx.crystalA
 
 % Elastic block
 fprintf(infile, '%s\n','*Elastic stiffness of single crystal [MPa]'); %L4
-v = Voigt(sx.C)./10^3;
+v = Voigt(sx.C);%./10^3;
 fspec ='';
 for ii = 1:6
     for jj = 1:6
         if v(ii,jj) ~= 0
-            fspec = append(fspec,'%-ge3\t');
+            fspec = append(fspec,'%-g \t');
         end
         if v(ii,jj) == 0
-            fspec = append(fspec,'%-g  \t\t');
+            fspec = append(fspec,'%-g \t');
         end
         if jj == 6
             fspec = append(fspec,'\n');
         end
     end
 end
-fprintf(infile, fspec, v);
+fprintf(infile, fspec, v');
 
 fprintf(infile, '%s\n','*Thermal expansion coefficients of single crystal[K^(-1)]'); %L11
 fspec = '';

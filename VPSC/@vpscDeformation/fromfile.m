@@ -13,8 +13,8 @@ end
 %% get first line information
 tline = fgetl(infile); %1
 
-first_line = num2cell(sscanf(tline, '%i %i %f %f %*s'));
-[def.nsteps, def.ictrl, def.increment, def.temperature] = deal(first_line{:});
+first_line = num2cell(sscanf(tline, '%i %i %f %f %f %*s'));
+[def.nsteps, def.ictrl, def.increment, def.temperature_i, def.temperature_f] = deal(first_line{:});
 
 %% read velocity gradient flags
 tline = fgetl(infile); %2

@@ -16,6 +16,8 @@ end
 for ii = 1:run.n_phases
     run.texture_out{ii} = vpscTexture;
     run.slip_activity{ii} = vpscSlipActivity(ii,run.single_crystal{ii}.nModesActive);
+    run.texture_out{ii}.CS = run.texture_in{ii}.CS;
+    run.texture_out{ii}.SS = run.texture_in{ii}.SS;
     run.texture_out{ii}.fromfile(sprintf('TEX_PH%d.OUT',ii));
     run.slip_activity{ii}.fromfile(sprintf('ACT_PH%d.OUT',ii));
     if exist(sprintf('MOR_PH%d.OUT',ii),"file")
@@ -27,8 +29,8 @@ if run.parameters.iSave > 0
     run.postmort_out = vpscPostmort;
     run.postmort_out.fromfile('POSTMORT.OUT');
 end
-run.stress_strain = vpscStressStrain;
-run.stress_strain.fromfile('STR_STR.OUT');
+%run.stress_strain = vpscStressStrain;
+%run.stress_strain.fromfile('STR_STR.OUT');
 
 cd(returnTo);
 

@@ -6,7 +6,8 @@ classdef vpscDeformationDefaults < handle
         nsteps;
         ictrl;
         increment;
-        temperature;
+        temperature_i;
+        temperature_f;
         vg_flag;
         velocity_gradient;
         cauchy_flag;
