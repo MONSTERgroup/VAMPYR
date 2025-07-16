@@ -13,6 +13,7 @@ classdef vpscPlasticityMode < handle
         hpFactor;
         latentHard;
         iSecondTwin
+        iTwinLaw
         twThresh1
         twThresh2
         modeX;

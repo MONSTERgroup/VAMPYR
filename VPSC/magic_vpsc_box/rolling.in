@@ -1,0 +1,17 @@
+20	3	0.02000000	273.0	273.0			nsteps	ictrl	eqincr	temp_i	temp_f
+* boundary conditions
+0	1	1		iudot	|	flag for vel.grad.
+1	0	1				|	(0:unknown-1:known)
+1	1	1				|
+						|
+0.00100000	0.00000000	0.00000000		udot	|	vel.grad
+0.00000000	0.00000000	0.00000000				|
+0.00000000	0.00000000	-0.00100000				|
+						|
+NaN	NaN	NaN		iscau	|	flag for Cauchy
+	NaN	NaN				|
+		NaN				|
+						|
+NaN	NaN	NaN		scauchy	|	Cauchy stress
+	NaN	NaN				|
+		NaN				|

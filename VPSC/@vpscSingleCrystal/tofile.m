@@ -92,7 +92,7 @@ for i = 1:sx.nModesActive
     fprintf(infile, [repmat(['%#g '],[1 sx.nModesActive]) '       hlatex(1,im),im=1,nmodes\n'], sx.Modes{cmode}.latentHard(:));
 
     if sx.Modes{cmode}.twinType ~= 0 
-        fprintf(infile, '%i %#g %#g               isectw,thres1,thres2\n', [sx.Modes{cmode}.iSecondTwin sx.Modes{cmode}.twThresh1 sx.Modes{cmode}.twThresh2]);
+        fprintf(infile, '%i %i %#g %#g               isectw,itwinlaw,thres1,thres2\n', [sx.Modes{cmode}.iSecondTwin sx.Modes{cmode}.iTwinLaw sx.Modes{cmode}.twThresh1 sx.Modes{cmode}.twThresh2]);
     end
     
 end

@@ -125,10 +125,11 @@ for i = 1:sx.nModesActive
     % if mode is a twin mode, there's an extra line
     if iTwTypeX(currentMode) ~= 0
         tline = fgetl(infile);
-        temp = sscanf(tline, '%f %f %f %*s',3);
+        temp = sscanf(tline, '%f %f %f %f %*s',4);
         iSecondTwin(currentMode) = temp(1);
-        twThresh1(currentMode) = temp(2);
-        twThresh2(currentMode) = temp(3);
+        iTwinLaw(currentMode) = temp(2);
+        twThresh1(currentMode) = temp(3);
+        twThresh2(currentMode) = temp(4);
     end
 end
 
@@ -162,6 +163,7 @@ for i = 1:sx.nModesTotal
         mode{i}.hpFactor = hpFactor(idx);
         mode{i}.latentHard = latentHard(idx,:);
         mode{i}.iSecondTwin = iSecondTwin(idx);
+        mode{i}.iTwinLaw = iTwinLaw(idx);
         mode{i}.twThresh1 = twThresh1(idx);
         mode{i}.twThresh2 = twThresh2(idx);
     end
