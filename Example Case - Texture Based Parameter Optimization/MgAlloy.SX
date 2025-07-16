@@ -84,5 +84,5 @@ COMPRESSIVE TWIN {11-22}
   20                               nrsx
   70.  0.  100. 30.   0.        tau0x,tau1x,thet0,thet1, hpfac
  1.0    1.0    1.0   1.0        hlatex(1,im),im=1,nmodes
-  1    0.10  0.50                 isectw,thres1,thres2
+  1  1  0.10  0.50                 isectw,thres1,thres2
  

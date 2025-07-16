@@ -26,7 +26,7 @@ phase1.diff
 0                        icubcomp:calculate fcc rolling components?                                                               
 0                        nwrite (frequency of texture downloads)                                                                  
 *MODELING CONDITIONS FOR THE RUN                                                                                                  
-3                        interaction (0:FC,1:afinpe,2:secant,3:neff=xx,4:tangent,5:SO),neff                                       
+3 10                     interaction (0:FC,1:afinpe,2:secant,3:neff=xx,4:tangent,5:SO),neff                                       
 1 1 1                    iupdate: update orient, grain shape, hardening                                                           
 0                        nneigh (0 for no neighbors, 1 for pairs, etc.)                                                           
 0                        iflu (0: don't calc, 1: calc fluctuations)                                                               
@@ -110,21 +110,21 @@ CONSTITUTIVE LAW
 25           grsze --> grain size only matters if HPfactor is nonzero                                                             
 PRISMATIC <a>----------------------------------------------------                                                                 
 20                                             nrsx                                                                               
-165.000 20.0000 300.000 90.0000 0.00000            tau0x,tau1x,thet0,thet1, hpfac                                                 
+99.9997 99.9996 250.500 0.000328892 0.00000            tau0x,tau1x,thet0,thet1, hpfac                                             
 1.00000 1.00000 1.00000 1.00000        hlatex(1,im),im=1,nmodes                                                                   
 BASAL <a>----------------------------------------------------                                                                     
 20                                             nrsx                                                                               
-63.0000 20.0000 190.000 100.000 0.00000            tau0x,tau1x,thet0,thet1, hpfac                                                 
+49.9810 99.9908 250.498 -0.0107044 0.00000            tau0x,tau1x,thet0,thet1, hpfac                                              
 1.00000 1.00000 1.00000 1.00000        hlatex(1,im),im=1,nmodes                                                                   
 PYRAMIDAL<c+a>----------------------------------------------------                                                                
 20                                             nrsx                                                                               
-230.000 20.0000 230.000 90.0000 0.00000            tau0x,tau1x,thet0,thet1, hpfac                                                 
+100.009 100.006 250.501 0.00831708 0.00000            tau0x,tau1x,thet0,thet1, hpfac                                              
 1.00000 1.00000 1.00000 1.00000        hlatex(1,im),im=1,nmodes                                                                   
 TENSILE TWIN {10-12}----------------------------------------------------                                                          
 20                                             nrsx                                                                               
-70.0000 0.00000 100.000 30.0000 0.00000            tau0x,tau1x,thet0,thet1, hpfac                                                 
+50.5086 100.001 250.501 0.00190357 0.00000            tau0x,tau1x,thet0,thet1, hpfac                                              
 1.00000 1.00000 1.00000 1.00000        hlatex(1,im),im=1,nmodes                                                                   
-0 0.00000 0.00000               isectw,thres1,thres2                                                                              
+0 0 0.00000 0.00000               isectw,itwinlaw,thres1,thres2                                                                   
 **** END OF CRYSTAL DATA FILE ****
 
 
@@ -137,32 +137,3 @@ TENSILE TWIN {10-12}----------------------------------------------------
  SHEAR MODULUS FOR MODE  1 IN PHASE  1 IS   16800.000
  N & B FOR MODE  1 IN PHASE  1
      0.866     0.500     0.000       -0.500     0.866     0.000
-     0.000    -1.000     0.000        1.000     0.000     0.000
-    -0.866     0.500     0.000       -0.500    -0.866     0.000
- SHEAR MODULUS FOR MODE  2 IN PHASE  1 IS   16400.000
- N & B FOR MODE  2 IN PHASE  1
-     0.000     0.000     1.000        1.000     0.000     0.000
-     0.000     0.000     1.000       -0.500     0.866     0.000
-     0.000     0.000     1.000       -0.500    -0.866     0.000
- SHEAR MODULUS FOR MODE  3 IN PHASE  1 IS   18410.846
- N & B FOR MODE  3 IN PHASE  1
-     0.764     0.441     0.470       -0.262    -0.454     0.852
-     0.764     0.441     0.470       -0.524     0.000     0.852
-     0.000    -0.882     0.470        0.262     0.454     0.852
-     0.000    -0.882     0.470       -0.262     0.454     0.852
-    -0.764     0.441     0.470        0.524     0.000     0.852
-    -0.764     0.441     0.470        0.262    -0.454     0.852
-    -0.764    -0.441     0.470        0.524     0.000     0.852
-    -0.764    -0.441     0.470        0.262     0.454     0.852
-     0.000     0.882     0.470       -0.262    -0.454     0.852
-     0.000     0.882     0.470        0.262    -0.454     0.852
-     0.764    -0.441     0.470       -0.524     0.000     0.852
-     0.764    -0.441     0.470       -0.262     0.454     0.852
- SHEAR MODULUS FOR MODE  4 IN PHASE  1 IS   19487.416
- N & B FOR MODE  4 IN PHASE  1
-     0.593     0.342     0.729       -0.632    -0.365     0.684
-     0.000     0.684     0.729        0.000    -0.729     0.684
-    -0.593     0.342     0.729        0.632    -0.365     0.684
-    -0.593    -0.342     0.729        0.632     0.365     0.684
-     0.000    -0.684     0.729        0.000     0.729     0.684
-     0.593    -0.342     0.729       -0.632     0.365     0.684

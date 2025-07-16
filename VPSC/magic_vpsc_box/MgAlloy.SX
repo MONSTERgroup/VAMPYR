@@ -70,18 +70,18 @@ CONSTITUTIVE LAW
 25           grsze --> grain size only matters if HPfactor is nonzero
 PRISMATIC <a>----------------------------------------------------
 20                                             nrsx
-165.000 20.0000 300.000 90.0000 0.00000            tau0x,tau1x,thet0,thet1, hpfac
+99.9997 99.9996 250.500 0.000328892 0.00000            tau0x,tau1x,thet0,thet1, hpfac
 1.00000 1.00000 1.00000 1.00000        hlatex(1,im),im=1,nmodes
 BASAL <a>----------------------------------------------------
 20                                             nrsx
-63.0000 20.0000 190.000 100.000 0.00000            tau0x,tau1x,thet0,thet1, hpfac
+49.9810 99.9908 250.498 -0.0107044 0.00000            tau0x,tau1x,thet0,thet1, hpfac
 1.00000 1.00000 1.00000 1.00000        hlatex(1,im),im=1,nmodes
 PYRAMIDAL<c+a>----------------------------------------------------
 20                                             nrsx
-230.000 20.0000 230.000 90.0000 0.00000            tau0x,tau1x,thet0,thet1, hpfac
+100.009 100.006 250.501 0.00831708 0.00000            tau0x,tau1x,thet0,thet1, hpfac
 1.00000 1.00000 1.00000 1.00000        hlatex(1,im),im=1,nmodes
 TENSILE TWIN {10-12}----------------------------------------------------
 20                                             nrsx
-70.0000 0.00000 100.000 30.0000 0.00000            tau0x,tau1x,thet0,thet1, hpfac
+50.5086 100.001 250.501 0.00190357 0.00000            tau0x,tau1x,thet0,thet1, hpfac
 1.00000 1.00000 1.00000 1.00000        hlatex(1,im),im=1,nmodes
-0 0.00000 0.00000               isectw,thres1,thres2
+0 0 0.00000 0.00000               isectw,itwinlaw,thres1,thres2
