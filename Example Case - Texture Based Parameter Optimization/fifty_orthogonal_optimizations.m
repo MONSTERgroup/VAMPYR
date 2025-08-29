@@ -69,16 +69,16 @@ run_90.texture_in{1} = mgTex_90;
 run_90.processes{1} = tensile_process;
 run_90.magic_vpsc_box_path = 'C:\Users\benjamin.begley\Documents\GitHub\VAMPYR\VPSC\magic_vpsc_box';
 
-% Update the slip system values
-run_0.single_crystal{1,1}.Modes{2,1}.voceParams = [30  30  300  0 ]; % basal
-run_0.single_crystal{1,1}.Modes{1,1}.voceParams = [60  60  600  0 ]; % prismatic
-run_0.single_crystal{1,1}.Modes{4,1}.voceParams = [90  80  800  0 ]; % pyramidal c+a
-run_0.single_crystal{1,1}.Modes{5,1}.voceParams = [15  0   30   30]; % tension twin
-
-run_90.single_crystal{1,1}.Modes{2,1}.voceParams = [30  30  300  0 ]; % basal
-run_90.single_crystal{1,1}.Modes{1,1}.voceParams = [60  60  600  0 ]; % prismatic
-run_90.single_crystal{1,1}.Modes{4,1}.voceParams = [90  80  800  0 ]; % pyramidal c+a
-run_90.single_crystal{1,1}.Modes{5,1}.voceParams = [15  0   30   30]; % tension twin
+% % Update the slip system values
+% run_0.single_crystal{1,1}.Modes{2,1}.voceParams = [30  30  300  0 ]; % basal
+% run_0.single_crystal{1,1}.Modes{1,1}.voceParams = [60  60  600  0 ]; % prismatic
+% run_0.single_crystal{1,1}.Modes{4,1}.voceParams = [90  80  800  0 ]; % pyramidal c+a
+% run_0.single_crystal{1,1}.Modes{5,1}.voceParams = [15  0   30   30]; % tension twin
+% 
+% run_90.single_crystal{1,1}.Modes{2,1}.voceParams = [30  30  300  0 ]; % basal
+% run_90.single_crystal{1,1}.Modes{1,1}.voceParams = [60  60  600  0 ]; % prismatic
+% run_90.single_crystal{1,1}.Modes{4,1}.voceParams = [90  80  800  0 ]; % pyramidal c+a
+% run_90.single_crystal{1,1}.Modes{5,1}.voceParams = [15  0   30   30]; % tension twin
 
 load(fullfile(input_path, "experimentalStressStrain.mat"));
 
@@ -86,7 +86,7 @@ tic
 
 for ii = 1:50
 
-[x{ii}, resnorm{ii}, residual{ii, exitflag{ii}] = optimize_stress_strain(run_0,run_90,exp_strain_0,exp_strain_90,exp_stress_0,exp_stress_90);
+[x{ii}, resnorm{ii}, residual{ii}, exitflag{ii}] = optimize_stress_strain(run_0,run_90,exp_strain_0,exp_strain_90,exp_stress_0,exp_stress_90);
     
 end
 
