@@ -29,8 +29,8 @@ if run.parameters.iSave > 0
     run.postmort_out = vpscPostmort;
     run.postmort_out.fromfile('POSTMORT.OUT');
 end
-%run.stress_strain = vpscStressStrain;
-%run.stress_strain.fromfile('STR_STR.OUT');
+run.stress_strain = vpscStressStrain;
+run.stress_strain.fromfile('STR_STR.OUT');
 
 cd(returnTo);
 

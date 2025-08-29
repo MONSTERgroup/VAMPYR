@@ -3,8 +3,9 @@
 % V.M. Miller, July 2025
 
 %% load the target texture
-
 load Mg-1Yodf.mat
+o.SS = specimenSymmetry('-1');
+o = o.rotate(rotation.byAxisAngle(zvector,90*degree));
 
 %% set up the initial VPSC runs 
 
@@ -41,7 +42,7 @@ run_0 = vpscRun(parameters_0);
     run_0.single_crystal{1} = mgSX; 
     run_0.texture_in{1} = mgTex_0;
     run_0.processes{1} = rolling_process;
-    run_0.magic_vpsc_box_path = 'C:\Users\victoria.miller\Documents\GitHub\VAMPYR\VPSC\magic_vpsc_box';
+    run_0.magic_vpsc_box_path = 'C:\Users\benjamin.begley\Documents\GitHub\VAMPYR\VPSC\magic_vpsc_box';
 
 
 % %%  run VPSC
@@ -50,7 +51,7 @@ run_0 = vpscRun(parameters_0);
 
 %% Throw it into an optimization loop
 
-[x, resnorm, residual, exitflag] = optimizeParametersFunction(run_0,o) 
+%[x, resnorm, residual, exitflag] = optimizeParametersFunction(run_0,o) 
 
 %% Plot the outputs
     

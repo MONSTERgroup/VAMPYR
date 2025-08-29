@@ -16,14 +16,14 @@ SLIP AND TWINNING MODES
 1 2 4 5                                 mode(i)
 PRISMATIC <a>
 1 3 1 0                       modex,nsmx,iopsysx,itwtypex
-1 0 -1 0   -1 2 -1 0 
-0 -1 1 0   2 -1 -1 0 
--1 1 0 0   -1 -1 2 0 
+0 1 -1 0   2 -1 -1 0 
+-1 1 0 0   1 1 -2 0 
+-1 0 1 0   -1 2 -1 0 
 BASAL <a>
 2 3 1 0                       modex,nsmx,iopsysx,itwtypex
-0 0 0 1   2 -1 -1 0 
-0 0 0 1   -1 2 -1 0 
+0 0 0 1   1 -2 1 0 
 0 0 0 1   -1 -1 2 0 
+0 0 0 1   -2 1 1 0 
 PYRAMIDAL<a>
 3 6 1 0                       modex,nsmx,iopsysx,itwtypex
 1 0 -1 1   -1 2 -1 0 
@@ -34,18 +34,18 @@ PYRAMIDAL<a>
 1 -1 0 1   1 1 -2 0 
 PYRAMIDAL<c+a>
 4 12 1 0                       modex,nsmx,iopsysx,itwtypex
+0 -1 1 -1   -1 2 -1 -3 
+0 -1 1 -1   -1 -1 2 3 
+0 1 -1 -1   1 -2 1 -3 
+0 1 -1 -1   1 1 -2 3 
+-1 1 0 1   -1 2 -1 -3 
+-1 1 0 1   -2 1 1 -3 
+1 -1 0 1   1 -2 1 -3 
+1 -1 0 1   2 -1 -1 -3 
 1 0 -1 1   -1 -1 2 3 
-1 0 -1 1   -2 1 1 3 
-0 -1 1 1   1 1 -2 3 
-0 -1 1 1   -1 2 -1 3 
--1 1 0 1   2 -1 -1 3 
--1 1 0 1   1 -2 1 3 
--1 0 1 1   2 -1 -1 3 
+1 0 -1 1   2 -1 -1 -3 
+-1 0 1 1   -2 1 1 -3 
 -1 0 1 1   1 1 -2 3 
-0 1 -1 1   -1 -1 2 3 
-0 1 -1 1   1 -2 1 3 
-1 -1 0 1   -2 1 1 3 
-1 -1 0 1   -1 2 -1 3 
 TENSILE TWIN {10-12}
 5 6 0 2                       modex,nsmx,iopsysx,itwtypex
 0.167000                 twshx
@@ -70,18 +70,18 @@ CONSTITUTIVE LAW
 25           grsze --> grain size only matters if HPfactor is nonzero
 PRISMATIC <a>----------------------------------------------------
 20                                             nrsx
-99.9997 99.9996 250.500 0.000328892 0.00000            tau0x,tau1x,thet0,thet1, hpfac
+47.3771 76.2311 309.675 2.19924 0.00000            tau0x,tau1x,thet0,thet1, hpfac
 1.00000 1.00000 1.00000 1.00000        hlatex(1,im),im=1,nmodes
 BASAL <a>----------------------------------------------------
 20                                             nrsx
-49.9810 99.9908 250.498 -0.0107044 0.00000            tau0x,tau1x,thet0,thet1, hpfac
+130.366 76.1517 340.743 5.70683 0.00000            tau0x,tau1x,thet0,thet1, hpfac
 1.00000 1.00000 1.00000 1.00000        hlatex(1,im),im=1,nmodes
 PYRAMIDAL<c+a>----------------------------------------------------
 20                                             nrsx
-100.009 100.006 250.501 0.00831708 0.00000            tau0x,tau1x,thet0,thet1, hpfac
+119.989 77.5809 322.195 3.00252 0.00000            tau0x,tau1x,thet0,thet1, hpfac
 1.00000 1.00000 1.00000 1.00000        hlatex(1,im),im=1,nmodes
 TENSILE TWIN {10-12}----------------------------------------------------
 20                                             nrsx
-50.5086 100.001 250.501 0.00190357 0.00000            tau0x,tau1x,thet0,thet1, hpfac
+315.811 110.566 466.722 0.164784 0.00000            tau0x,tau1x,thet0,thet1, hpfac
 1.00000 1.00000 1.00000 1.00000        hlatex(1,im),im=1,nmodes
 0 0 0.00000 0.00000               isectw,itwinlaw,thres1,thres2
