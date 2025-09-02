@@ -49,7 +49,7 @@ tensile_process.velocity_gradient = [1  0    0;...
     0 -0.5  0;...
     0  0   -0.5];
 tensile_process.vg_flag = ones(3);
-tensile_process.nsteps = 50;
+tensile_process.nsteps = 40;
 tensile_process.ictrl = 1;
 tensile_process.increment = 0.0025;
 tensile_process.temperature_i = 298;

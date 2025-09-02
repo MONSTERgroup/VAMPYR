@@ -50,7 +50,8 @@ end
     function delta = calcVPSCerrorSTR(a)
 
         if a(1,4) >= a(1,3) || a(2,4) >= a(2,3) || a(3,4) >= a(3,3) || a(4,4) >= a(4,3)
-            delta = inf;
+            delta = repmat(10000, 41, 2);
+            delta = delta.^2;
         else
             % Update the slip system values
             run_0.single_crystal{1,1}.Modes{2,1}.voceParams = a(1,:); % basal

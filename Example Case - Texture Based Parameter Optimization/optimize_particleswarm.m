@@ -12,10 +12,10 @@ arguments (Output)
 end
 
 
-basal = optimvar('basal', 4, "LowerBound", [1 0 1 0], 'UpperBound', [500 500 1000 100])
-prism = optimvar('prism', 4, "LowerBound", [1 0 1 0], 'UpperBound', [500 500 1000 100])
-pyram = optimvar('pyram', 4, "LowerBound", [1 0 1 0], 'UpperBound', [500 500 1000 100])
-twin  = optimvar('twin',  4, "LowerBound", [1 0 1 0], 'UpperBound', [500 500 1000 100])
+basal = optimvar('basal', 4, "LowerBound", [1 0 1 0], 'UpperBound', [500 500 1000 500])
+prism = optimvar('prism', 4, "LowerBound", [1 0 1 0], 'UpperBound', [500 500 1000 500])
+pyram = optimvar('pyram', 4, "LowerBound", [1 0 1 0], 'UpperBound', [500 500 1000 500])
+twin  = optimvar('twin',  4, "LowerBound", [1 0 1 0], 'UpperBound', [500 500 1000 500])
 x0.basal = [1 0 1 0];
 x0.prism = [1 0 1 0];
 x0.pyram = [1 0 1 0];
@@ -41,9 +41,6 @@ options = optimoptions(@particleswarm, 'PlotFcn', {@pswplotbestf}, 'FunctionTole
     function delta = calcVPSCerrorTex(basal, prism, pyram, twin)
 
         if basal(4) >= basal(3) || prism(4) >= prism(3) || pyram(4) >= pyram(3) || twin(4) >= twin(3)
-            delta = 0.75;
-            disp(delta);
-        elseif basal(1)>pyram(1) || prism(1)>pyram(1) || twin(1)>pyram(1)
             delta = 0.75;
             disp(delta);
         % if basal(1)>pyram(1) || prism(1)>pyram(1) || twin(1)>pyram(1)
