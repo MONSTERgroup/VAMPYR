@@ -10,24 +10,19 @@ catch me
     throw(me);
 end
 
-%% Read
-startRow = 2;
-formatSpec = ['%f%f' repmat('%f',[1,act.nmodes])];
+%% Read Data
 tline = fgetl(infile);
-data = textscan(infile, formatSpec);%, 'Delimiter', '', 'WhiteSpace', '', 'TextType', 'string', 'HeaderLines' ,startRow-1, 'ReturnOnError', false, 'EndOfLine', '\r\n');
-tline = fgetl(infile);
-while ischar(tline)
-    % tline = fgetl(infile);
-    data = textscan(infile, formatSpec);%, 'Delimiter', '', 'WhiteSpace', '', 'TextType', 'string', 'HeaderLines' ,startRow-1, 'ReturnOnError', false, 'EndOfLine', '\r\n');
-    tline = fgetl(infile);
-end
+header = split(tline);
+header = header(~cellfun('isempty', header));
+formatSpec = [repmat('%f', [1, size(header,1)])];
+data = textscan(infile, formatSpec);
 
-%% segment data
+%% Segment Data
+act.strain = data{:,strcmp(header, 'STRAIN')};
+act.AVACS  = data{:,strcmp(header, 'AVACS')};
 
-act.strain = data{:,1};
-act.AVACS = data{:,2};
 for ii = 1:act.nmodes
-    act.activities(:,ii) = data{:,ii+2};
+    act.activities(:,ii) = data{:,strcmp(header, ['MODE' num2str(ii)])};
 end
 end
 

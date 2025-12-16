@@ -72,7 +72,7 @@ classdef vpscRun < handle
                 run.texture_in = old_run.texture_out;
                 run.morphology_in = old_run.morphology_out;
                 run.postmort_in = old_run.postmort_out;
-                %run.parameters.iRecover = 1;
+                run.parameters.iRecover = 0;
                 if run.parameters.nProcess > 1
                     warning("More than one process, confirm that run.parameters.iSave is set to the desired step")
                 end
