@@ -1,4 +1,4 @@
-# VAMPYR
+# VAMPYR <img width="65" alt="Cartoon image of a vampire." class="recess" src="https://github.com/user-attachments/assets/d83f5230-a4de-413c-94d8-0ebde56c745d">
 **V**PSC **A**utomation in **M**TEX for **P**olycrystal **P**lasticit**Y** **R**esearch
 
 A toolbox for running and automating the Viscoplastic Self-Consistent (VPSC) model using MATLAB, depending on the MTEX crystallographic toolbox.
