@@ -1,0 +1,402 @@
+
+ **** INPUT FILE VPSC.IN FOR THIS RUN ****
+1                          VP (1) or ELAST (-1) regime                                                                            
+1                          number of phases (nph)                                                                                 
+1.0  0.0                   relative vol. fract. of phases (wph(i))                                                                
+*INFORMATION ABOUT PHASE #1                                                                                                       
+1   0   25                      grain shape contrl, fragmentn, crit aspect ratio                                                  
+1.0  1.0  1.0                 initial ellipsoid ratios (dummy if ishape=4)                                                        
+0.0  0.0  0.0                 init Eul ang ellips axes (dummy if ishape=3,4)                                                      
+* name and path of texture file (filetext)                                                                                        
+ex02_FCC\rand500.tex                                                                                                              
+* name and path of single crystal file (filecrys)                                                                                 
+ex02_FCC\FCC.sx                                                                                                                   
+* name and path of grain shape file (dummy if ishape=0) (fileaxes)                                                                
+dummy                                                                                                                             
+* name and path of diffraction file (dummy if idiff=0)                                                                            
+0                                                                                                                                 
+dummy                                                                                                                             
+*PRECISION SETTINGS FOR CONVERGENCE PROCEDURES (default values)                                                                   
+0.001 0.001 0.001 0.001    errs,errd,errm,errso                                                                                   
+100 100 25     itmax:   max # of iter, external, internal and SO loops                                                            
+0  2  10  2    irsvar & jrsini,jrsfin,jrstep (dummy if irsvar=0)                                                                  
+*INPUT/OUTPUT SETTINGS FOR THE RUN (default is zero)                                                                              
+0              irecover:read grain states from POSTMORT.IN (1) or not (0)?                                                        
+0              isave:   write grain states in POSTMORT.OUT at step 'isave'?                                                       
+0              icubcomp:calculate fcc rolling components?                                                                         
+0              nwrite (frequency of texture downloads)                                                                            
+*MODELING CONDITIONS FOR THE RUN                                                                                                  
+3  0.          interaction (0:FC,1:aff,2:sec,3:neff or RDC,4:tan,5:SO), neffgrx                                                   
+1  1  1        iupdate: update orient, grain shape, hardening                                                                     
+0              nneigh (0 for no neighbors, 1 for pairs, etc.)                                                                     
+0              iflu (0: don't calc, 1: calc fluctuations)                                                                         
+*NUMBER OF PROCESSES (Lij const; Lij variable; PCYS ;LANKFORD; rigid rotatn)                                                      
+1                                                                                                                                 
+*IVGVAR AND PATH\NAME OF FILE FOR EACH PROCESS                                                                                    
+0                                                                                                                                 
+ex02_FCC\TENSION_axial.3                                                                                                          
+
+
+ **** CRYSTAL DATA FILE ****
+*Material: AUSTENITIC STEEL                                                                                                       
+cubic           crysym                                                                                                            
+   1.0   1.0   1.0   90.   90.   90.   unit cell axes and angles                                                                  
+Elastic stiffness (single crystal [GPa]; scaled=0.85xINTERPOLATED)                                                                
+ 205.0   138.0   138.0   000.0   000.0   000.0                                                                                    
+ 138.0   205.0   138.0   000.0   000.0   000.0                                                                                    
+ 138.0   138.0   205.0   000.0   000.0   000.0                                                                                    
+ 000.0   000.0   000.0   126.0   000.0   000.0                                                                                    
+ 000.0   000.0   000.0   000.0   126.0   000.0                                                                                    
+ 000.0   000.0   000.0   000.0   000.0   126.0                                                                                    
+*Thermal expansion coefficients (single crystal in crystal axis):                                                                 
+  1.0e-6   1.0e-6  1.0e-6   0.0e0   0.0e0   0.0e0                                                                                 
+*Info about slip & twinning modes in this file:                                                                                   
+  2          nmodesx    (total # of modes listed in file)                                                                         
+  1          nmodes     (# of modes to be used in the calculation)                                                                
+  1          mode(i)    (label of the modes to be used)                                                                           
+  <111>{110} SLIP                                                                                                                 
+ 1  12  1   0                       modex,nsmx,isensex,itwtypex                                                                   
+   1  1  1        0  1 -1           slip (n & b)                                                                                  
+   1  1  1        1  0 -1                                                                                                         
+   1  1  1        1 -1  0                                                                                                         
+  -1  1  1        0  1 -1                                                                                                         
+  -1  1  1        1  0  1                                                                                                         
+  -1  1  1        1  1  0                                                                                                         
+  -1 -1  1        0  1  1                                                                                                         
+  -1 -1  1        1  0  1                                                                                                         
+  -1 -1  1        1 -1  0                                                                                                         
+   1 -1  1        0  1  1                                                                                                         
+   1 -1  1        1  0 -1                                                                                                         
+   1 -1  1        1  1  0                                                                                                         
+  <111>{112} TWIN                                                                                                                 
+ 2  12  0   2                        modex,nsmx,isensex,itwtypex                                                                  
+ 0.707                               twshx                                                                                        
+   1  1  1       -2  1  1                                                                                                         
+   1  1  1        1 -2  1                                                                                                         
+   1  1  1        1  1 -2                                                                                                         
+  -1  1  1        2  1  1                                                                                                         
+  -1  1  1       -1 -2  1                                                                                                         
+  -1  1  1       -1  1 -2                                                                                                         
+  -1 -1  1        2 -1  1                                                                                                         
+  -1 -1  1       -1  2  1                                                                                                         
+  -1 -1  1       -1 -1 -2                                                                                                         
+   1 -1  1       -2 -1  1                                                                                                         
+   1 -1  1        1  2  1                                                                                                         
+   1 -1  1        1 -1 -2                                                                                                         
+*Constitutive law                                                                                                                 
+   0      Voce=0, MTS=1                                                                                                           
+   1      iratesens (0:rate insensitive, 1:rate sensitive)                                                                        
+   50     grsze --> grain size only matters if HPfactor is non-zero                                                               
+  <111>{110} SLIP -------------------------------------------                                                                     
+ 20                               nrsx                                                                                            
+ 1.0   0.0   0.0   0.0  0.        tau0x,tau1x,thet0,thet1, hpfac                                                                  
+ 1.0    1.0                          hlatex(1,im),im=1,nmodes                                                                     
+  <111>{112} TWIN --------------------------------------                                                                          
+ 20                               nrsx                                                                                            
+ 1.0   0.0    0.   0.   0.        tau0x,tau1x,thet0,thet1, hpfac                                                                  
+ 1.0    1.0                       hlatex(1,im),im=1,nmodes                                                                        
+ 0     0.05   0.50                isectw, thres1,thres2                                                                           
+**** END OF CRYSTAL DATA FILE ****
+
+
+ CHECKING THAT CELCC*SELCC-ID6=0   0.2134069E-31
+ *********** PHASE   1
+ RANDOM PX BULK & POISSON MODULI     160.333       0.266
+ RANDOM PX ELASTIC CTES C11, C12, C44     279.000     101.000      89.000
+
+ INSIDE SUBROUTINE DATA_CRYSTAL
+ SHEAR MODULUS FOR MODE  1 IN PHASE  1 IS      64.333
+ N & B FOR MODE  1 IN PHASE  1
+     0.577     0.577     0.577        0.000     0.707    -0.707
+     0.577     0.577     0.577        0.707     0.000    -0.707
+     0.577     0.577     0.577        0.707    -0.707     0.000
+    -0.577     0.577     0.577        0.000     0.707    -0.707
+    -0.577     0.577     0.577        0.707     0.000     0.707
+    -0.577     0.577     0.577        0.707     0.707     0.000
+    -0.577    -0.577     0.577        0.000     0.707     0.707
+    -0.577    -0.577     0.577        0.707     0.000     0.707
+    -0.577    -0.577     0.577        0.707    -0.707     0.000
+     0.577    -0.577     0.577        0.000     0.707     0.707
+     0.577    -0.577     0.577        0.707     0.000    -0.707
+     0.577    -0.577     0.577        0.707     0.707     0.000
+
+ **** CRYST TEXTURE (FIRST FEW LINES) ****
+dummy                                                                                                                             
+dummy                                                                                                                             
+random texture generated by RANDTEXT.FOR (23/01/97)                                                                               
+B   500                                                                                                                           
+    102.74    119.56     33.65  1.0                                                                                               
+    219.06     36.21     70.51  1.0                                                                                               
+    166.66     28.59     45.80  1.0                                                                                               
+    149.74     86.13     38.68  1.0                                                                                               
+    143.88     72.50      9.75  1.0                                                                                               
+     27.71      7.88    225.69  1.0                                                                                               
+     10.26     81.59    324.82  1.0                                                                                               
+    213.21    156.91    352.41  1.0                                                                                               
+    313.75     60.06    131.59  1.0                                                                                               
+    283.74    137.64    213.65  1.0                                                                                               
+    329.59    158.18    298.33  1.0                                                                                               
+     61.37    171.68    104.65  1.0                                                                                               
+     44.90     68.33     40.28  1.0                                                                                               
+     29.40    114.77    163.14  1.0                                                                                               
+     56.39    115.89    341.90  1.0                                                                                               
+    271.21     76.66    171.67  1.0                                                                                               
+    .........................
+ **** END OF CRYST TEXTURE DATA FILE ****
+
+
+*** RUNNING INTERACTION NEFF=   10.00
+
+
+ UB THERMAL TENSOR (VOIGT NOTATION)
+  0.1000E-05  0.1000E-05  0.1000E-05  0.1482E-23 -0.1622E-23 -0.3991E-23
+
+ UB ELASTIC STIFFNESS (VOIGT NOTATION)
+  0.2795E+03  0.9994E+02  0.1016E+03  0.1676E+00  0.1479E+01  0.6049E+00
+  0.9994E+02  0.2801E+03  0.1009E+03 -0.1180E+01  0.1349E+00 -0.7842E+00
+  0.1016E+03  0.1009E+03  0.2785E+03  0.1012E+01 -0.1614E+01  0.1793E+00
+  0.1676E+00 -0.1180E+01  0.1012E+01  0.8894E+02  0.1793E+00  0.1349E+00
+  0.1479E+01  0.1349E+00 -0.1614E+01  0.1793E+00  0.8959E+02  0.1676E+00
+  0.6049E+00 -0.7842E+00  0.1793E+00  0.1349E+00  0.1676E+00  0.8794E+02
+
+ LB THERMAL TENSOR (VOIGT NOTATION)
+  0.1000E-05  0.1000E-05  0.1000E-05  0.2658E-23 -0.1216E-23 -0.1258E-23
+
+ LB ELASTIC STIFFNESS (VOIGT NOTATION)
+  0.2406E+03  0.1195E+03  0.1209E+03  0.1580E+00  0.1267E+01  0.5168E+00
+  0.1195E+03  0.2412E+03  0.1203E+03 -0.1012E+01  0.1034E+00 -0.6672E+00
+  0.1209E+03  0.1203E+03  0.2398E+03  0.8542E+00 -0.1370E+01  0.1503E+00
+  0.1580E+00 -0.1012E+01  0.8542E+00  0.5984E+02  0.1446E+00  0.1204E+00
+  0.1267E+01  0.1034E+00 -0.1370E+01  0.1446E+00  0.6040E+02  0.1448E+00
+  0.5168E+00 -0.6672E+00  0.1503E+00  0.1204E+00  0.1448E+00  0.5899E+02
+
+
+*** LOAD CONDITIONS FOR THIS RUN
+  50    3   0.02    298.   298.   nsteps  ictrl  ctrlincr  temp_i  temp_f                                                         
+* boundary conditions                                                                                                             
+    0       1       1           iudot    |    flag for vel.grad.                                                                  
+    1       0       1                    |    (0:unknown-1:known)                                                                 
+    1       1       1                    |                                                                                        
+                                         |                                                                                        
+   -0.5     0.      0.          udot     |    vel.grad                                                                            
+    0.     -0.5     0.                   |                                                                                        
+    0.      0.      1.0                  |                                                                                        
+                                         |                                                                                        
+    1       0       0           iscau    |    flag for Cauchy                                                                     
+            1       0                    |                                                                                        
+                    0                    |                                                                                        
+                                         |                                                                                        
+    0.      0.      0.          scauchy  |    Cauchy stress                                                                       
+            0.      0.                   |                                                                                        
+                    0.                   @                                                                                        
+                                                                                                                                 
+
+*******   STEP   1      *** N_EFF FROM RDC CALCULATION         
+   23   0.198E-03   0.889E-03   0.122E-03
+kg,NEFFGR,RC_min,RelRate     55    10.000     0.422     0.514
+dg(KGMIN)   0.02910   0.62900  -0.01647  -0.12050   0.03054
+kg,NEFFGR,RC_max,RelRate    325    10.000     1.745     1.244
+dg(KGMAX)   0.51659   1.51400  -0.00964  -0.02773   0.22275
+nrs,avneff,RDC_min,RDCave,RDCmax,RDCdev  20  7.229  0.0000E+00  0.1311E+01  0.1745E+01  0.3048E+00
+
+*******   STEP   2      *** N_EFF FROM RDC CALCULATION         
+   12   0.145E-03   0.671E-03   0.149E-03
+nrs,avneff,RDC_min,RDCave,RDCmax,RDCdev  20  7.422  0.7435E+00  0.1297E+01  0.1745E+01  0.3668E+00
+
+*******   STEP   3      *** N_EFF FROM RDC CALCULATION         
+    8   0.911E-04   0.970E-03   0.393E-03
+nrs,avneff,RDC_min,RDCave,RDCmax,RDCdev  20  7.529  0.8718E+00  0.1290E+01  0.1745E+01  0.3914E+00
+
+*******   STEP   4      *** N_EFF FROM RDC CALCULATION         
+    8   0.468E-04   0.529E-03   0.415E-03
+nrs,avneff,RDC_min,RDCave,RDCmax,RDCdev  20  7.565  0.1163E+01  0.1288E+01  0.1745E+01  0.4072E+00
+
+*******   STEP   5      *** N_EFF FROM RDC CALCULATION         
+    7   0.504E-04   0.890E-03   0.463E-03
+nrs,avneff,RDC_min,RDCave,RDCmax,RDCdev  20  7.605  0.1537E+01  0.1287E+01  0.1745E+01  0.4202E+00
+
+*******   STEP   6      *** N_EFF FROM RDC CALCULATION         
+    8   0.165E-03   0.762E-03   0.323E-03
+nrs,avneff,RDC_min,RDCave,RDCmax,RDCdev  20  7.636  0.1964E+01  0.1286E+01  0.1745E+01  0.4324E+00
+
+*******   STEP   7      *** N_EFF FROM RDC CALCULATION         
+    7   0.127E-03   0.976E-03   0.683E-03
+nrs,avneff,RDC_min,RDCave,RDCmax,RDCdev  20  7.682  0.2427E+01  0.1284E+01  0.1745E+01  0.4437E+00
+
+*******   STEP   8      *** N_EFF FROM RDC CALCULATION         
+    6   0.102E-03   0.972E-03   0.688E-03
+nrs,avneff,RDC_min,RDCave,RDCmax,RDCdev  20  7.732  0.2916E+01  0.1283E+01  0.1745E+01  0.4543E+00
+
+*******   STEP   9      *** N_EFF FROM RDC CALCULATION         
+    6   0.411E-03   0.790E-03   0.757E-03
+nrs,avneff,RDC_min,RDCave,RDCmax,RDCdev  20  7.771  0.3412E+01  0.1281E+01  0.1745E+01  0.4642E+00
+
+*******   STEP  10      *** N_EFF FROM RDC CALCULATION         
+    6   0.409E-03   0.679E-03   0.759E-03
+nrs,avneff,RDC_min,RDCave,RDCmax,RDCdev  20  7.813  0.3922E+01  0.1280E+01  0.1745E+01  0.4733E+00
+
+*******   STEP  11      *** N_EFF FROM RDC CALCULATION         
+    5   0.261E-03   0.966E-03   0.314E-03
+nrs,avneff,RDC_min,RDCave,RDCmax,RDCdev  20  7.868  0.4442E+01  0.1278E+01  0.1745E+01  0.4816E+00
+
+*******   STEP  12      *** N_EFF FROM RDC CALCULATION         
+    5   0.250E-03   0.870E-03   0.350E-03
+nrs,avneff,RDC_min,RDCave,RDCmax,RDCdev  20  7.913  0.4947E+01  0.1276E+01  0.1745E+01  0.4892E+00
+
+*******   STEP  13      *** N_EFF FROM RDC CALCULATION         
+    5   0.241E-03   0.820E-03   0.350E-03
+nrs,avneff,RDC_min,RDCave,RDCmax,RDCdev  20  7.955  0.5447E+01  0.1274E+01  0.1745E+01  0.4959E+00
+
+*******   STEP  14      *** N_EFF FROM RDC CALCULATION         
+    5   0.229E-03   0.774E-03   0.350E-03
+nrs,avneff,RDC_min,RDCave,RDCmax,RDCdev  20  7.994  0.5936E+01  0.1273E+01  0.1745E+01  0.5016E+00
+
+*******   STEP  15      *** N_EFF FROM RDC CALCULATION         
+    5   0.217E-03   0.733E-03   0.350E-03
+nrs,avneff,RDC_min,RDCave,RDCmax,RDCdev  20  8.032  0.6412E+01  0.1271E+01  0.1745E+01  0.5064E+00
+
+*******   STEP  16      *** N_EFF FROM RDC CALCULATION         
+    5   0.745E-04   0.679E-03   0.187E-03
+nrs,avneff,RDC_min,RDCave,RDCmax,RDCdev  20  8.063  0.6871E+01  0.1270E+01  0.1745E+01  0.5101E+00
+
+*******   STEP  17      *** N_EFF FROM RDC CALCULATION         
+    5   0.732E-04   0.618E-03   0.184E-03
+nrs,avneff,RDC_min,RDCave,RDCmax,RDCdev  20  8.094  0.7312E+01  0.1268E+01  0.1745E+01  0.5132E+00
+
+*******   STEP  18      *** N_EFF FROM RDC CALCULATION         
+    5   0.727E-04   0.571E-03   0.183E-03
+nrs,avneff,RDC_min,RDCave,RDCmax,RDCdev  20  8.123  0.7731E+01  0.1267E+01  0.1745E+01  0.5154E+00
+
+*******   STEP  19      *** N_EFF FROM RDC CALCULATION         
+    5   0.728E-04   0.526E-03   0.183E-03
+nrs,avneff,RDC_min,RDCave,RDCmax,RDCdev  20  8.149  0.3833-312  0.1265E+01  0.1745E+01  0.5169E+00
+
+*******   STEP  20      *** N_EFF FROM RDC CALCULATION         
+    5   0.732E-04   0.466E-03   0.183E-03
+nrs,avneff,RDC_min,RDCave,RDCmax,RDCdev  20  8.172  0.8502E+01  0.1263E+01  0.1745E+01  0.5176E+00
+
+*******   STEP  21      *** N_EFF FROM RDC CALCULATION         
+    6   0.150E-03   0.156E-03   0.311E-03
+nrs,avneff,RDC_min,RDCave,RDCmax,RDCdev  20  8.190  0.8850E+01  0.1262E+01  0.1745E+01  0.5177E+00
+
+*******   STEP  22      *** N_EFF FROM RDC CALCULATION         
+    6   0.170E-03   0.218E-03   0.340E-03
+nrs,avneff,RDC_min,RDCave,RDCmax,RDCdev  20  8.208  0.9178E+01  0.1260E+01  0.1745E+01  0.5170E+00
+
+*******   STEP  23      *** N_EFF FROM RDC CALCULATION         
+    5   0.140E-03   0.886E-03   0.137E-03
+nrs,avneff,RDC_min,RDCave,RDCmax,RDCdev  20  8.234  0.4381-313  0.1257E+01  0.1745E+01  0.5156E+00
+
+*******   STEP  24      *** N_EFF FROM RDC CALCULATION         
+    5   0.132E-03   0.860E-03   0.136E-03
+nrs,avneff,RDC_min,RDCave,RDCmax,RDCdev  20  8.248  0.9782E+01  0.1255E+01  0.1745E+01  0.5138E+00
+
+*******   STEP  25      *** N_EFF FROM RDC CALCULATION         
+    5   0.118E-03   0.774E-03   0.189E-03
+nrs,avneff,RDC_min,RDCave,RDCmax,RDCdev  20  8.261  0.1005E+02  0.1253E+01  0.1745E+01  0.5114E+00
+
+*******   STEP  26      *** N_EFF FROM RDC CALCULATION         
+    5   0.105E-03   0.678E-03   0.240E-03
+nrs,avneff,RDC_min,RDCave,RDCmax,RDCdev  20  8.273  0.1029E+02  0.1251E+01  0.1745E+01  0.5084E+00
+
+*******   STEP  27      *** N_EFF FROM RDC CALCULATION         
+    5   0.915E-04   0.582E-03   0.285E-03
+nrs,avneff,RDC_min,RDCave,RDCmax,RDCdev  20  8.284  0.1051E+02  0.1249E+01  0.1745E+01  0.5051E+00
+
+*******   STEP  28      *** N_EFF FROM RDC CALCULATION         
+    3   0.478E-03   0.897E-03   0.995E-03
+nrs,avneff,RDC_min,RDCave,RDCmax,RDCdev  20  8.281  0.3833-312  0.1248E+01  0.1745E+01  0.5017E+00
+
+*******   STEP  29      *** N_EFF FROM RDC CALCULATION         
+    3   0.404E-03   0.805E-03   0.836E-03
+nrs,avneff,RDC_min,RDCave,RDCmax,RDCdev  20  8.292  0.1090E+02  0.1246E+01  0.1745E+01  0.4976E+00
+
+*******   STEP  30      *** N_EFF FROM RDC CALCULATION         
+    3   0.379E-03   0.790E-03   0.771E-03
+nrs,avneff,RDC_min,RDCave,RDCmax,RDCdev  20  8.302  0.1107E+02  0.1244E+01  0.1745E+01  0.4934E+00
+
+*******   STEP  31      *** N_EFF FROM RDC CALCULATION         
+    3   0.357E-03   0.786E-03   0.716E-03
+nrs,avneff,RDC_min,RDCave,RDCmax,RDCdev  20  8.313  0.1122E+02  0.1242E+01  0.1745E+01  0.4889E+00
+
+*******   STEP  32      *** N_EFF FROM RDC CALCULATION         
+    3   0.338E-03   0.803E-03   0.668E-03
+nrs,avneff,RDC_min,RDCave,RDCmax,RDCdev  20  8.325  0.1135E+02  0.1240E+01  0.1745E+01  0.4843E+00
+
+*******   STEP  33      *** N_EFF FROM RDC CALCULATION         
+    3   0.321E-03   0.831E-03   0.625E-03
+nrs,avneff,RDC_min,RDCave,RDCmax,RDCdev  20  8.337  0.1146E+02  0.1238E+01  0.1745E+01  0.4796E+00
+
+*******   STEP  34      *** N_EFF FROM RDC CALCULATION         
+    3   0.306E-03   0.860E-03   0.586E-03
+nrs,avneff,RDC_min,RDCave,RDCmax,RDCdev  20  8.350  0.1156E+02  0.1236E+01  0.1745E+01  0.4748E+00
+
+*******   STEP  35      *** N_EFF FROM RDC CALCULATION         
+    3   0.291E-03   0.886E-03   0.551E-03
+nrs,avneff,RDC_min,RDCave,RDCmax,RDCdev  20  8.363  0.1164E+02  0.1234E+01  0.1745E+01  0.4698E+00
+
+*******   STEP  36      *** N_EFF FROM RDC CALCULATION         
+    3   0.278E-03   0.908E-03   0.518E-03
+nrs,avneff,RDC_min,RDCave,RDCmax,RDCdev  20  8.378  0.1171E+02  0.1233E+01  0.1745E+01  0.4648E+00
+
+*******   STEP  37      *** N_EFF FROM RDC CALCULATION         
+    3   0.266E-03   0.925E-03   0.488E-03
+nrs,avneff,RDC_min,RDCave,RDCmax,RDCdev  20  8.393  0.1177E+02  0.1231E+01  0.1745E+01  0.4597E+00
+
+*******   STEP  38      *** N_EFF FROM RDC CALCULATION         
+    3   0.255E-03   0.938E-03   0.460E-03
+nrs,avneff,RDC_min,RDCave,RDCmax,RDCdev  20  8.410  0.1181E+02  0.1229E+01  0.1745E+01  0.4546E+00
+
+*******   STEP  39      *** N_EFF FROM RDC CALCULATION         
+    3   0.245E-03   0.946E-03   0.434E-03
+nrs,avneff,RDC_min,RDCave,RDCmax,RDCdev  20  8.430  0.1184E+02  0.1228E+01  0.1745E+01  0.4495E+00
+
+*******   STEP  40      *** N_EFF FROM RDC CALCULATION         
+    3   0.235E-03   0.952E-03   0.410E-03
+nrs,avneff,RDC_min,RDCave,RDCmax,RDCdev  20  8.451  0.1186E+02  0.1226E+01  0.1745E+01  0.4444E+00
+
+*******   STEP  41      *** N_EFF FROM RDC CALCULATION         
+    3   0.226E-03   0.955E-03   0.387E-03
+nrs,avneff,RDC_min,RDCave,RDCmax,RDCdev  20  8.474  0.1187E+02  0.1224E+01  0.1745E+01  0.4392E+00
+
+*******   STEP  42      *** N_EFF FROM RDC CALCULATION         
+    3   0.217E-03   0.955E-03   0.367E-03
+nrs,avneff,RDC_min,RDCave,RDCmax,RDCdev  20  8.497  0.1187E+02  0.1223E+01  0.1745E+01  0.4341E+00
+
+*******   STEP  43      *** N_EFF FROM RDC CALCULATION         
+    3   0.209E-03   0.953E-03   0.347E-03
+nrs,avneff,RDC_min,RDCave,RDCmax,RDCdev  20  8.521  0.1186E+02  0.1221E+01  0.1745E+01  0.4290E+00
+
+*******   STEP  44      *** N_EFF FROM RDC CALCULATION         
+    3   0.201E-03   0.948E-03   0.329E-03
+nrs,avneff,RDC_min,RDCave,RDCmax,RDCdev  20  8.545  0.1184E+02  0.1219E+01  0.1745E+01  0.4238E+00
+
+*******   STEP  45      *** N_EFF FROM RDC CALCULATION         
+    3   0.194E-03   0.940E-03   0.312E-03
+nrs,avneff,RDC_min,RDCave,RDCmax,RDCdev  20  8.570  0.1181E+02  0.1218E+01  0.1745E+01  0.4187E+00
+
+*******   STEP  46      *** N_EFF FROM RDC CALCULATION         
+    3   0.187E-03   0.928E-03   0.295E-03
+nrs,avneff,RDC_min,RDCave,RDCmax,RDCdev  20  8.595  0.1177E+02  0.1216E+01  0.1745E+01  0.4136E+00
+
+*******   STEP  47      *** N_EFF FROM RDC CALCULATION         
+    3   0.180E-03   0.914E-03   0.279E-03
+nrs,avneff,RDC_min,RDCave,RDCmax,RDCdev  20  8.620  0.1173E+02  0.1214E+01  0.1745E+01  0.4086E+00
+
+*******   STEP  48      *** N_EFF FROM RDC CALCULATION         
+    3   0.173E-03   0.897E-03   0.264E-03
+nrs,avneff,RDC_min,RDCave,RDCmax,RDCdev  20  8.646  0.1168E+02  0.1212E+01  0.1745E+01  0.4036E+00
+
+*******   STEP  49      *** N_EFF FROM RDC CALCULATION         
+    3   0.167E-03   0.877E-03   0.250E-03
+nrs,avneff,RDC_min,RDCave,RDCmax,RDCdev  20  8.672  0.1162E+02  0.1211E+01  0.1745E+01  0.3986E+00
+
+*******   STEP  50      *** N_EFF FROM RDC CALCULATION         
+    3   0.160E-03   0.855E-03   0.235E-03
+nrs,avneff,RDC_min,RDCave,RDCmax,RDCdev  20  8.699  0.1156E+02  0.1209E+01  0.1745E+01  0.3937E+00
+
+*******   STEP  51      *** N_EFF FROM RDC CALCULATION         
+    3   0.154E-03   0.831E-03   0.221E-03
+nrs,avneff,RDC_min,RDCave,RDCmax,RDCdev  20  8.725  0.1149E+02  0.1207E+01  0.1745E+01  0.3889E+00
+
+ TIME ELAPSED   14.16secs
