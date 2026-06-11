@@ -21,7 +21,7 @@ dummy
 *INPUT/OUTPUT SETTINGS FOR THE RUN (default is zero)
 0              irecover:read grain states from POSTMORT.IN (1) or not (0)?
 0              isave:   write grain states in POSTMORT.OUT at step 'isave'?
-1              icubcomp:calculate fcc rolling components?
+0              icubcomp:calculate fcc rolling components?
 0              nwrite (frequency of texture downloads)
 *MODELING CONDITIONS FOR THE RUN
 1  10          interaction (0:FC,1:aff,2:sec,3:neff or RDC,4:tan,5:SO), neffx
@@ -29,11 +29,7 @@ dummy
 0              nneigh (0 for no neighbors, 1 for pairs, etc.)
 0              iflu (0: don't calc, 1: calc fluctuations)
 *NUMBER OF PROCESSES (Lij const; Lij variable; PCYS ;LANKFORD; rigid rotatn)
-3
+1
 *IVGVAR AND PATH\NAME OF FILE OR STRESS SUBSPACE OR ANGULAR INCREMENT
 0         ivgvar=0 will run a monotonic strain path
 rolling
-2         ivgvar=2 will calculate PCYS at the end
-1 2             -->   pi-plane section of stress space
-3         ivgvar=3 will calculate Lankford coefficients at the end
-10.              -->   angular increment for tensile probing
