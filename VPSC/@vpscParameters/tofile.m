@@ -78,11 +78,11 @@ for i = 1:param.nProcess
         catch
             fprintf(infile, '%s\n', param.processDetail{i,1});
         end
-    elseif param.processType(1,i) == 2
-        fprintf(infile, fsc({'%u',param.defProcess{i,1}},{'ivgvar=2 will calculate PCYS at the end\n'},pos));
+    elseif param.processType(i,1) == 2
+        fprintf(infile, fsc({'%u',param.processType(i,1)},{'ivgvar=2 will calculate PCYS at the end\n'},pos));
         fprintf(infile, fsc({'%u %u',[param.pcysSection(1) param.pcysSection(2)]},{'--> section of stress space\n'},pos));
-    elseif param.processType(1,i) == 3
-        fprintf(infile, fsc({'%u',param.defProcess{i,1}},{'ivgvar=3 will calculate Lankford coefficients at the end\n'},pos));
+    elseif param.processType(i,1) == 3
+        fprintf(infile, fsc({'%u',param.processType(i,1)},{'ivgvar=3 will calculate Lankford coefficients at the end\n'},pos));
         fprintf(infile, '%u\n', param.lankfordInc);
     end
     
