@@ -18,8 +18,9 @@ if run.parameters.iRecover
 end
 
 for ii = 1:run.n_processes
-    run.processes{ii}.tofile(fullfile(run.magic_vpsc_box_path, run.parameters.processDetail{ii}));
+    if run.parameters.processType(ii,1) == 0 || run.parameters.processType(ii,1) == 1
+        run.processes{ii}.tofile(fullfile(run.magic_vpsc_box_path, run.parameters.processDetail{ii}));
+    end
 end
-
 end
 
